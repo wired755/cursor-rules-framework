@@ -1,0 +1,99 @@
+# MWA Implementation Patterns
+
+## SPECIFIC IMPLEMENTATION GUIDELINES
+
+### 1. Process Status Management
+```python
+# Always initialize process status
+mixin = ProcessStatusMixin()
+mixin.init_process_status(request)
+
+# Use session for process state
+comp_post_date = request.session.get("comp_post_date")
+
+# Update process status properly
+mixin.update_session(request, validated_date=now())
+```
+
+### 2. Import Resource Implementation
+```python
+class MyResource(CommonResource):
+    file_headers = ('field1', 'field2', 'field3')
+    
+    class Meta:
+        model = MyModel
+        fields = ('field1', 'field2', 'field3')
+        import_id_fields = ['field1']
+    
+    def get_field_metadata(self, request=None):
+        return {
+            "field1": {
+                "verbose_name": "Field 1",
+                "readonly": False,
+                "importable": True,
+                "exportable": True,
+                "is_auto": False,
+                "default": None,
+            }
+        }
+```
+
+### 3. Admin View Pattern
+```python
+@require_POST
+@login_required  
+@staff_member_required
+def my_admin_view(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    try:
+        # Implementation
+        pass
+    except ValidationError as e:
+        messages.error(request, str(e))
+        return redirect("admin:index")
+```
+
+### 4. Modal JavaScript Pattern
+```javascript
+// Follow existing modal patterns
+function showMyModal() {
+    $('#myModal').modal('show');
+}
+
+function handleMyModalSubmit() {
+    // Use existing AJAX patterns
+    $.post(url, data)
+        .done(function(response) {
+            // Handle success
+        })
+        .fail(function(xhr) {
+            // Handle error
+        });
+}
+```
+
+## MWA-SPECIFIC ANTI-PATTERNS
+
+### Over-Engineering
+- Creating new functions for simple data formatting
+- Adding architectural layers for 2-3 line fixes
+- Following patterns without questioning if they're needed
+- Building "future-proof" solutions for current problems
+
+### Assumption-Based Solutions
+- Assuming data flow problems without checking format
+- Assuming backend issues without checking templates
+- Assuming architectural problems without checking simple fixes
+- Assuming complexity is needed without trying simple solutions first
+
+## MWA-SPECIFIC PITFALLS TO AVOID
+
+1. **Don't modify legacy table structures** without explicit requirements
+2. **Don't bypass session management** for process state
+3. **Don't create new admin views** without proper decorators
+4. **Don't assume template context** exists without verification
+5. **Don't ignore Oracle-specific** data type considerations
+6. **Don't create imports** without proper field metadata
+7. **Don't modify closed compensation periods** without validation

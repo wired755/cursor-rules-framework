@@ -1,0 +1,51 @@
+# MWA Project Rules
+
+## PROJECT OVERVIEW
+This is a Django-based medical practice compensation management system for anesthesia providers. The system manages complex compensation workflows, data imports/exports, and process state management.
+
+## CORE TECHNOLOGIES & PATTERNS
+- Django 5.0+ with custom admin interface (Jazzmin)
+- Oracle Database with legacy table structures
+- Import/Export functionality using django-import-export
+- Session-based process state management
+- Mixin-heavy architecture for shared functionality
+- Custom admin interface with modals and AJAX
+
+## CONTEXT FILES REFERENCE
+- **Application Patterns**: `docs/context/app_patterns.md` - MWA-specific patterns and architecture
+- **Development Patterns**: `docs/context/patterns.md` - Cursor development and troubleshooting patterns
+- **Workflows**: `docs/context/workflows.md` - Cursor development workflows
+- **Architecture**: `docs/context/architecture.md` - Architectural guidelines
+- **Decisions**: `docs/context/decisions.md` - Architectural decision records
+
+## SESSION MANAGEMENT
+- **Initialize process status**: Always call init_process_status before process operations
+- **Update session atomically**: Use update_session method for process state changes
+- **Clear session on errors**: Implement proper cleanup for failed operations
+
+## FRONTEND GUIDELINES
+- **Use existing modals**: Follow modal_helper.js patterns for new modals
+- **Update process status**: Use process_status_updater.js for dynamic updates
+- **Maintain consistency**: Follow existing CSS classes and styling patterns
+
+## FILE ORGANIZATION
+- **Mixins directory**: Business logic mixins go in mixins/ directory
+- **Resources pattern**: Import/export resources in resources.py
+- **Static organization**: JS files in static/js/, CSS in static/css/
+- **Template structure**: Admin templates in templates/admin/
+
+## DOCUMENTATION REQUIREMENTS
+- Update README.md for any new features
+- Document any new mixins or resources
+- Add docstrings to all new functions
+- Update context.md for any behavioral changes
+- Maintain field metadata documentation
+
+## COMMON PITFALLS TO AVOID
+1. **Don't modify legacy table structures** without explicit requirements
+2. **Don't bypass session management** for process state
+3. **Don't create new admin views** without proper decorators
+4. **Don't assume template context** exists without verification
+5. **Don't ignore Oracle-specific** data type considerations
+6. **Don't create imports** without proper field metadata
+7. **Don't modify closed compensation periods** without validation

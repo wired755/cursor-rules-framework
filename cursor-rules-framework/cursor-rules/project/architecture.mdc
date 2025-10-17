@@ -1,0 +1,49 @@
+# MWA Architecture Rules
+
+## ARCHITECTURE GUIDELINES
+
+### 1. Follow Existing Patterns
+- **Mixins over Inheritance**: Use mixins for shared functionality (ProcessStatusMixin, CompensationMixin, etc.)
+- **Session State Management**: Use request.session for process state, not database storage
+- **Custom Admin Views**: Follow the pattern of @admin.site.admin_view decorators
+- **Resource Classes**: Use CommonResource base class for all import/export resources
+
+### 2. Model Conventions
+- **Always specify db_column**: All model fields must have explicit db_column mappings
+- **Use verbose_name**: All fields require verbose_name for admin display
+- **Follow legacy naming**: Maintain existing table and column naming conventions (e.g., COMP_POST_DT)
+- **Audit fields**: Include created_date, updated_date, created_by, updated_by where applicable
+- **Thin Models**: Business logic in mixins, not models
+
+### 3. Admin Interface Rules
+- **Extend CommonModelAdmin**: All admin classes should inherit from CommonModelAdmin
+- **Use BulkImportExportMixin**: For models with import/export functionality
+- **Register with mwa_admin_site**: Always use the custom admin site, not default
+- **Implement get_comp_post_date**: For models with compensation post dates
+
+### 4. Import/Export Patterns
+- **Extend CommonResource**: All resource classes must inherit from CommonResource
+- **Implement get_field_metadata**: Define comprehensive field metadata for all resources
+- **Use file_headers**: Define file_headers tuple for headerless import files
+- **Validate referential integrity**: Check foreign key relationships during import
+
+## ARCHITECTURAL DECISION RECORD
+
+### Django Best Practice Adaptations for MWA
+
+| Standard Django Practice | MWA Implementation | Justification |
+|---------------------------|-------------------|---------------|
+| Use Class-Based Views (CBVs) | Function-Based Views with decorators | Consistency with existing admin interface patterns |
+| Business logic in models | Business logic in mixins | Complex compensation workflows require shared mixin architecture |
+| Avoid raw SQL | Use SQLProcedureMixin | Oracle stored procedures required for legacy integration and performance |
+| Use DRF for JSON APIs | Custom JsonResponse patterns | Internal admin system doesn't require full API framework |
+| PostgreSQL/MySQL databases | Oracle Database | Legacy medical practice system integration requirement |
+| Redis/Celery for background tasks | Session-based state management | Simpler architecture appropriate for admin workflows |
+| Multiple Django apps | Single app with mixin modularity | Tightly integrated compensation management domain |
+
+### Convention Over Configuration Adaptations
+- **Follow Django's URL patterns**: Use clear, RESTful URL structures
+- **Apply Django forms and validation**: Maintain form handling best practices
+- **Use Django templates**: Follow MVT pattern for template rendering
+- **Security first**: Implement Django's built-in security features
+- **Performance optimization**: Apply Django ORM optimization within Oracle constraints

@@ -1,0 +1,104 @@
+# RCA Prompt Protocol
+
+## @RCA <phase> <error>
+**Trigger**: When user reports an error or problem
+**Flags**:
+- `@RCA <phase> <error>` - Default: Generates thread response with analysis
+- `@RCA -D <phase> <error>` - RCA document and thread response
+- `@RCA -T <phase> <error>` - Thread response only (no RCA document)
+- `@RCA -H <phase> <error>` - Historical analysis (check similar past errors)
+- `@RCA -P <phase> <error>` - Prevention analysis (how to avoid similar issues)
+
+**Flag Usage Examples**:
+- `@RCA authentication login_error` - Create new RCA with thread response
+- `@RCA -D authentication login_error` - Generate RCA document only
+- `@RCA -T authentication login_error` - Thread response only
+- `@RCA -H authentication login_error` - Check for similar past authentication errors
+- `@RCA -P authentication login_error` - Analyze prevention strategies
+
+**Auto-load context**:
+- Error message and context provided
+- Relevant project files based on phase
+- `project/patterns.mdc` - Project-specific troubleshooting patterns
+- `project/architecture.mdc` - Project-specific architectural guidelines
+- `project/project.mdc` - Project-specific overview and requirements
+- `logs/django.log` - Recent error logs for context
+- `templates/rca_template.mdc` - Enhanced RCA document template
+- `general.mdc` - Core operational rules and guidelines
+
+**Auto-execute sequence**:
+1. **Load Context**: Read all referenced context files
+2. **Analyze Error**: Review error message and context in detail
+3. **Review Files**: Check relevant project files based on phase
+4. **Check Logs**: Review recent error logs for patterns
+5. **Check Patterns**: Reference patterns.md for common problems
+6. **Historical Analysis**: Check for similar past errors (when `@RCA -H` is used)
+7. **Identify Root Cause**: Determine the underlying issue with supporting evidence
+8. **Impact Assessment**: Evaluate scope and severity of the issue
+9. **Propose Fix**: Suggest minimal solution with implementation steps
+10. **Prevention Analysis**: Identify prevention strategies (when `@RCA -P` is used)
+11. **Generate Name**: Create unique RCA name "RCA-[phase]-[error_type]-[timestamp]"
+12. **Respond to Thread**: Respond using Response Template
+13. **Create or Update Document**: 
+    - **Condition**: Only execute when `@RCA -D` flag is provided
+    - **Action**: Generate or update structured RCA document using `templates/rca_template.mdc`
+    - **Skip**: When `-D` flag is not used (e.g., `@RCA <phase> <error>` or `@RCA -T <phase> <error>`)
+14. **Validate Analysis**: Ensure analysis covers all aspects
+15. **STOP**: Wait for explicit "Yes, implement this fix" command
+
+**Response Template**:
+```
+### ERROR SUMMARY
+[Brief description of error and context]
+
+### ROOT CAUSE ANALYSIS
+[Detailed analysis of error, context, and underlying causes]
+
+### IMPACT ASSESSMENT
+[Scope and severity of the issue]
+
+### PROPOSED FIX
+[Minimal solution with step-by-step implementation]
+
+### PREVENTION STRATEGIES
+[How to avoid similar issues in the future]
+
+### VALIDATION CHECKLIST
+- [ ] Analyzed error message and context
+- [ ] Reviewed relevant project files
+- [ ] Checked logs for patterns
+- [ ] Referenced MWA troubleshooting patterns
+- [ ] Identified root cause with evidence
+- [ ] Proposed minimal fix
+- [ ] Considered prevention strategies
+
+### CONFIRMATION REQUIRED
+**I will NOT make changes until you say "Yes, implement this fix"**
+```
+
+**Validation Checklist**:
+- [ ] Loaded all context files
+- [ ] Analyzed error message and context in detail
+- [ ] Reviewed relevant project files based on phase
+- [ ] Checked logs for patterns and similar errors
+- [ ] Referenced patterns for common problems
+- [ ] Identified root cause with supporting evidence
+- [ ] Assessed impact and severity
+- [ ] Proposed minimal fix with implementation steps
+- [ ] Generated unique RCA name with timestamp
+- [ ] Applied RCA template structure (when -D flag used)
+- [ ] Considered prevention strategies
+- [ ] **STOP** - Wait for explicit permission
+
+**Always Apply**:
+- Start with simplest possible solution
+- Check templates before backend changes
+- Verify data format issues first
+- Reference project-specific patterns from `project/patterns.mdc`
+- Consider project-specific database requirements from `project/architecture.mdc`
+- Apply project-specific compliance requirements from `project/project.mdc`
+- Use project-specific state management patterns from `project/patterns.mdc`
+- Review recent logs for context
+- Consider historical similar issues
+- Focus on prevention strategies
+- Document findings for future reference

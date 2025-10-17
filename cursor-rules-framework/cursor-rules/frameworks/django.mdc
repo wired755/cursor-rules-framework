@@ -1,0 +1,53 @@
+# Django Framework Rules
+
+## DJANGO BEST PRACTICES INTEGRATION
+- **Write clear, technical responses**: Provide precise Django examples in code
+- **Follow PEP 8 compliance**: Maintain Django coding style guide standards
+- **Use descriptive naming**: Apply proper naming conventions (lowercase with underscores for functions/variables)
+- **Prioritize readability**: Code should be maintainable and self-documenting
+
+## ERROR HANDLING
+- **Use specific exceptions**: Prefer ValidationError, WebServiceError over generic Exception
+- **Implement at view level**: Use Django's built-in error handling mechanisms
+- **Validate form and model data**: Use Django's validation framework consistently
+- **Use try-except blocks**: Handle exceptions in business logic and views
+- **Log appropriately**: Use logger.debug for development, logger.error for production issues
+- **Customize error pages**: Improve user experience with helpful 404/500 pages
+
+## SECURITY & PERMISSIONS
+- **Use decorators**: Apply @login_required and @staff_member_required to all admin views
+- **Apply Django security best practices**: Implement CSRF protection, SQL injection protection, XSS prevention
+- **Validate user permissions**: Check user.is_staff for administrative operations  
+- **Sanitize inputs**: Validate all form inputs and file uploads
+
+## PERFORMANCE OPTIMIZATION
+- **Optimize query performance**: Use Django ORM's select_related and prefetch_related
+- **Implement database indexing**: Use query optimization techniques for better performance
+- **Bulk operations**: Leverage django-import-export for large dataset handling
+
+## DJANGO TESTING INTEGRATION
+- **Use Django's built-in testing tools**: Implement unittest and pytest-django for code quality
+- **Follow Django testing best practices**: Test models, views, forms, and integrations
+- **Test security implementations**: Verify authentication, permissions, and data validation
+
+## DATA VALIDATION
+- **Validate imports**: Test import functionality with sample data
+- **Check process flows**: Verify complete workflow processes
+- **Test edge cases**: Handle empty data, invalid formats, duplicate entries
+
+## UI TESTING
+- **Modal functionality**: Ensure all modals work correctly
+- **Dynamic updates**: Verify dynamic status updates work
+- **Error handling**: Test error message display and handling
+
+## DATABASE TESTING
+- **Database compatibility**: Test with actual database
+- **Transaction handling**: Verify database transactions work correctly
+- **Performance**: Monitor query performance for large datasets
+
+## CONVENTION OVER CONFIGURATION
+- **Follow Django's URL patterns**: Use clear, RESTful URL structures
+- **Apply Django forms and validation**: Maintain form handling best practices
+- **Use Django templates**: Follow MVT pattern for template rendering
+- **Security first**: Implement Django's built-in security features
+- **Performance optimization**: Apply Django ORM optimization within constraints

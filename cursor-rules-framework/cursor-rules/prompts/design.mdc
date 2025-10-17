@@ -1,0 +1,90 @@
+# DESIGN Prompt Protocol
+
+## @DESIGN <concept>
+**Trigger**: When user requests design creation or architecture analysis
+**Flags**:
+- `@DESIGN <concept>` - Default: Generates thread response with analysis
+- `@DESIGN -D <concept>` - Design document and thread response
+- `@DESIGN -R <comments>` - Refactor previously stated design
+- `@DESIGN -U <design_name>` - Update existing design document
+- `@DESIGN -V <design_name>` - View existing design document
+
+**Flag Usage Examples**:
+- `@DESIGN user_authentication` - Create new design with thread response
+- `@DESIGN -D user_authentication` - Generate design document only
+- `@DESIGN -R "Add OAuth2 support"` - Refactor current design
+- `@DESIGN -U DESIGN-user_auth-v1` - Update existing design
+- `@DESIGN -V DESIGN-user_auth-v1` - View existing design
+
+**Auto-load context**:
+- `project/project.mdc` - Project-specific overview and requirements
+- `project/architecture.mdc` - Project-specific architectural guidelines
+- `project/patterns.mdc` - Project-specific development patterns
+- `project/testing.mdc` - Project-specific testing requirements
+- `templates/design_template.mdc` - Enhanced design document template
+- `frameworks/*` - Best practices for frameworks used in project
+- `general.mdc` - Core operational rules and guidelines
+
+**Auto-execute sequence**:
+1. **Load Context**: Read all referenced context files
+2. **Review Codebase**: Review all files in existing codebase for patterns and constraints
+3. **Research Libraries**: Identify third-party libraries and evaluate alternatives
+4. **Analyze Concept**: Analyze concept against:
+   - Architectural guidelines and patterns
+   - Project-specific requirements and constraints
+   - Framework best practices and limitations
+   - Security and compliance requirements
+   - Refactor comments (when `@DESIGN -R` is used)
+5. **Generate Name**: Create unique design name "DESIGN-[concept]-[version]"
+6. **Respond to Thread**: Respond using Response Template
+7. **Create or Update Document**: 
+   - **Condition**: Only execute when `@DESIGN -D` flag is provided
+   - **Action**: Generate or update structured design document using `templates/design_template.mdc`
+   - **Skip**: When `-D` flag is not used (e.g., `@DESIGN <concept>` or `@DESIGN -R <comments>`) 
+8. **Validate Design**: Ensure design meets all requirements and constraints
+9. **STOP**: Wait for explicit "Begin Implementation" command
+
+**Response Template**:
+```
+### SUMMARY
+[Summarize concept and requirements]
+
+### DESIGN ANALYSIS
+[Analysis of concept against architectural guidelines, development patterns, project overview and specific requirements, framework(s) best practices, and refactor comments (when @DESIGN -R is used)]
+
+### DESIGN DECISION
+[High-level architectural decisions and approach]
+
+### IMPLEMENTATION PLAN
+[Step-by-step implementation plan with code examples and technical details]
+
+### VALIDATION CHECKLIST
+- [ ] Meets architectural guidelines
+- [ ] Follows project patterns
+- [ ] Addresses security requirements
+- [ ] Complies with framework best practices
+- [ ] Handles edge cases and error scenarios
+
+### IMPLEMENTATION READY
+**I will NOT implement until you say "Begin Implementation"**
+```
+
+**Validation Checklist**:
+- [ ] Loaded all context files
+- [ ] Reviewed existing codebase for patterns and constraints
+- [ ] Researched third-party libraries and alternatives
+- [ ] Analyzed concept against all requirements
+- [ ] Generated unique design name with version
+- [ ] Applied design template structure
+- [ ] Validated against architectural guidelines
+- [ ] Checked security and compliance requirements
+- [ ] **STOP** - Wait for explicit permission
+
+**Always Apply**:
+- Project requirements from `project/project.mdc`
+- Project-specific architectural guidelines from `project/architecture.mdc`
+- Project-specific development patterns from `project/patterns.mdc`
+- Project-specific testing requirements from `project/testing.mdc`
+- Framework and architecture best practices
+- Error handling and validation requirements
+- Documentation standards and templates

@@ -1,0 +1,83 @@
+# Implementation Plan Template
+
+## @PLAN-DOC <design_name>
+**Purpose**: Generate structured implementation plan for MWA project
+**Auto-load context**:
+- Design document referenced by design_name
+- `docs/context/architecture.md` - Architectural guidelines
+
+**Template Structure**:
+```markdown
+# Implementation Plan: [Plan Name]
+
+## Phase 1: [Phase Name]
+### Objectives
+[What this phase accomplishes]
+
+### Tasks
+- [ ] Task 1: [Specific action]
+- [ ] Task 2: [Specific action]
+- [ ] Task 3: [Specific action]
+
+### Dependencies
+[What must be completed before this phase]
+
+### Deliverables
+[What will be produced in this phase]
+
+### Timeline
+[Estimated duration and milestones]
+
+## Phase 2: [Phase Name]
+### Objectives
+[What this phase accomplishes]
+
+### Tasks
+- [ ] Task 1: [Specific action]
+- [ ] Task 2: [Specific action]
+- [ ] Task 3: [Specific action]
+
+### Dependencies
+[What must be completed before this phase]
+
+### Deliverables
+[What will be produced in this phase]
+
+### Timeline
+[Estimated duration and milestones]
+
+## Phase 3: [Phase Name]
+### Objectives
+[What this phase accomplishes]
+
+### Tasks
+- [ ] Task 1: [Specific action]
+- [ ] Task 2: [Specific action]
+- [ ] Task 3: [Specific action]
+
+### Dependencies
+[What must be completed before this phase]
+
+### Deliverables
+[What will be produced in this phase]
+
+### Timeline
+[Estimated duration and milestones]
+
+## Risk Assessment
+[Potential risks and mitigation strategies]
+
+## Success Criteria
+[How success will be measured for each phase]
+
+## Resource Requirements
+[Team members, tools, and other resources needed]
+```
+
+**Always Apply**:
+- MWA architectural patterns from app_patterns.md
+- Security considerations for each phase
+- HIPAA compliance requirements
+- Oracle database integration patterns
+- Django best practices within MWA constraints
+- Session-based state management patterns

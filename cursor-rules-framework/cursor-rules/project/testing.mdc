@@ -1,0 +1,61 @@
+# MWA Testing Rules
+
+## MWA-SPECIFIC TESTING REQUIREMENTS
+
+### 1. Oracle Database Testing
+- **Oracle compatibility**: Test with actual Oracle database
+- **Transaction handling**: Verify database transactions work correctly
+- **Performance**: Monitor query performance for large datasets
+- **Legacy table structures**: Test with existing table schemas
+- **Data type compatibility**: Verify Oracle-specific data types work correctly
+
+### 2. Healthcare Compliance Testing
+- **HIPAA compliance**: Test PII data protection
+- **Audit trail**: Verify all actions are logged
+- **Access controls**: Test user permission restrictions
+- **Data sanitization**: Test PII data handling
+- **Session security**: Test session-based state management
+
+### 3. MWA Process Flow Testing
+- **Compensation workflows**: Test complete compensation process workflows
+- **Import/Export functionality**: Test with sample data
+- **Process status management**: Test session state transitions
+- **Modal functionality**: Ensure all modals work correctly
+- **Process status updates**: Verify dynamic status updates work
+
+### 4. MWA-Specific Edge Cases
+- **Empty data handling**: Test with empty datasets
+- **Invalid formats**: Test with malformed data
+- **Duplicate entries**: Test duplicate handling
+- **Closed periods**: Test compensation period restrictions
+- **Legacy data**: Test with existing Oracle data
+
+### 5. Performance Testing
+- **Large datasets**: Test with realistic data volumes
+- **Bulk operations**: Test import/export with large files
+- **Session performance**: Test session state with large datasets
+- **Oracle optimization**: Test query performance with Oracle database
+
+## TESTING PROTOCOLS
+
+### 1. Pre-Implementation Testing
+- Run tests before any implementation
+- Verify all tests pass after changes
+- Document any test failures with RCA
+- Update tests when requirements change
+- Maintain test coverage reports
+
+### 2. Security Testing
+- Test authentication and authorization
+- Validate input sanitization
+- Check for SQL injection vulnerabilities
+- Verify XSS protection
+- Test session management
+- Validate error handling
+
+### 3. Integration Testing
+- Test complete MWA workflows
+- Test Oracle database integration
+- Test session-based state management
+- Test import/export functionality
+- Test admin interface functionality

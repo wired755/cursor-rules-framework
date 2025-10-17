@@ -1,0 +1,75 @@
+# PLAN Prompt Protocol
+
+## @PLAN <design_name>
+**Trigger**: When user requests implementation planning
+**Flags**:
+- `@PLAN <design_name>` - Default: Generates thread response + implementation plan
+- `@PLAN -D <design_name>` - Implementation plan document only (no thread response)
+- `@PLAN -T <design_name>` - Thread response only (no implementation plan)
+- `@PLAN -R <plan_name> <feedback>` - Review and revise existing plan based on feedback
+
+**Auto-load context**:
+- Design document referenced by design_name
+- User feedback provided (when @PLAN -R is used)
+- `project/architecture.mdc` - Project-specific architectural guidelines
+- `project/patterns.mdc` - Project-specific development patterns
+- `project/project.mdc` - Project-specific overview and requirements
+- `docs/templates/plan_template.md` - Plan document template
+- `templates/plan_template.mdc` - Enhanced plan document template
+
+**Auto-execute sequence**:
+1. **Reference Design**: Load the specified design document
+2. **Break into Phases**: Create implementation phases
+3. **Apply Guidelines**: Follow architectural guidelines
+4. **Generate Names**: Create unique plan name "Plan_[design_name]_[timestamp]"
+5. **Create Phases**: Generate unique phase names "Phase_1_[name]", "Phase_2_[name]", etc.
+6. **Generate Plan**: Use enhanced plan template for structured output
+7. **Create or Update Document**: 
+   - **Condition**: Only execute when `@PLAN -D` flag is provided
+   - **Action**: Generate or update structured plan document using `templates/plan_template.mdc`
+   - **Skip**: When `-D` flag is not used (e.g., `@PLAN <design_name>` or `@PLAN -R <plan_name> <feedback>`)
+8. **Review and Revise Plan**: 
+   - **Condition**: Only execute when `@PLAN -R` flag is provided
+   - **Action**: Analyze feedback, compare with existing plan, generate revised plan
+   - **Skip**: When `-R` flag is not used
+9. **STOP**: Wait for approval before proceeding
+
+**Response Template**:
+```
+### PLAN ANALYSIS
+[Analysis of design document]
+
+### FEEDBACK ANALYSIS
+[Analysis of feedback for correctness and applicability] (when @PLAN -R is used)
+
+### IMPLEMENTATION PLAN
+[Structured plan with phases and steps]
+
+### PLAN REVISION
+[Revised implementation plan based on feedback] (when @PLAN -R is used)
+
+### PLAN APPROVAL REQUIRED
+**I will NOT proceed until you approve this plan**
+```
+
+**Validation Checklist**:
+- [ ] Referenced design document
+- [ ] Generated unique plan name
+- [ ] Generated unique phase names
+- [ ] Used plan template
+- [ ] Applied architectural guidelines
+- [ ] Analyzed feedback for correctness (when @PLAN -R is used)
+- [ ] Reviewed current plan against feedback (when @PLAN -R is used)
+- [ ] Generated revised plan (when @PLAN -R is used)
+- [ ] **STOP** - Wait for explicit permission
+
+**Always Apply**:
+- Project-specific architectural patterns from `project/patterns.mdc`
+- Project-specific security considerations from `project/project.mdc`
+- Project-specific compliance requirements from `project/project.mdc`
+- Project-specific database integration patterns from `project/architecture.mdc`
+- Framework best practices within project constraints
+- Project-specific state management patterns from `project/patterns.mdc`
+- Maintain project-specific architectural patterns in revisions (when @PLAN -R is used)
+- Preserve project-specific security and compliance in plan updates (when @PLAN -R is used)
+- Keep project-specific database considerations in revisions (when @PLAN -R is used)
