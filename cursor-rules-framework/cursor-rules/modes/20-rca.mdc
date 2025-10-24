@@ -10,13 +10,16 @@ priority: 2
 **Objective**: Find simple, direct fixes for problems
 **Trigger**: When user reports an error or problem
 
-## 🚨 MANDATORY CRITICAL RULES 🚨
-- Your first action MUST read and obey all critical rules and behaviors in `rules.mdc`
-- You MUST follow the enhanced permission gate from `rules.mdc`
-- You MUST complete rule compliance validation before any actions
-- **SESSION BOUNDARY ENFORCEMENT**: Each new request requires fresh permission
-- **NO PERMISSION CARRYOVER**: Cannot assume permission from previous requests
-- Explicitly state the RCA Workflow steps you are following
+## 🚨 MANDATORY GATE VERIFICATION 🚨
+
+Before proceeding with RCA workflow:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+
+**ENFORCEMENT**: Cannot proceed with workflow until this verification is complete.
 
 ## RCA WORKFLOW
 ### 1. Load Context
@@ -30,17 +33,24 @@ priority: 2
 - **Identify Symptoms**: What behavior indicates the problem
 - **Gather Information**: Error messages, logs, recent changes
 
+**GATE CHECKPOINT 1**: Analysis complete - No permission required yet, continue to investigation.
+
 ### 3. Root Cause Investigation
 - **Start Simple**: Check for simple format or logical errors
 - **Trace the Flow**: Follow data from source to error
 - **Check Templates**: UI issues often start with template problems
 - **Verify Assumptions**: Don't assume - verify how things actually work
 
+**GATE CHECKPOINT 2**: Root cause identified - No permission required yet, continue to solution design.
+
 ### 4. Solution Design
 - **Find the Simplest Fix**: 2-3 line solutions before architectural changes
 - **Test the Theory**: Verify the root cause before implementing
 - **Plan the Fix**: Step-by-step implementation
 - **Consider Prevention**: How to avoid similar issues
+
+**GATE CHECKPOINT 3**: Solution designed - PERMISSION REQUIRED BEFORE IMPLEMENTATION.
+**Permission State**: Must transition to REQUESTED.
 
 ### 5. Impact Analysis
 - **Check Dependencies**: What other code depends on this change
@@ -90,12 +100,19 @@ When in RCA mode, you MUST complete ALL sections:
 - [ ] Considered prevention strategies
 
 #### CONFIRMATION REQUIRED (mandatory)
-🚨 **CRITICAL: I will NOT make changes until you say "Yes, implement this fix"** 🚨
+
+**PERMISSION STATE**: REQUESTED
+
+🚨 **CRITICAL: I will NOT make changes until you type "APPROVE"** 🚨
+
+To proceed with implementation, you must type exactly: **"APPROVE"**
+
 - **FRESH PERMISSION REQUIRED**: This is a new request requiring explicit permission
 - **NO CARRYOVER**: Cannot assume permission from previous requests
-- NO code changes without explicit permission
-- NO file modifications without confirmation
-- NO implementation until you approve
-- WAIT for your explicit "Yes, implement this fix" command
+- **STANDARD PHRASE**: Only "APPROVE" is accepted (not "yes", "ok", etc.)
+- NO code changes without explicit "APPROVE"
+- NO file modifications without "APPROVE"
+- NO implementation until you type "APPROVE"
+- WAIT for your explicit "APPROVE" command
 
 **ENFORCEMENT**: Incomplete RCA responses are not allowed

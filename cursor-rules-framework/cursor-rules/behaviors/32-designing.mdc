@@ -4,6 +4,20 @@ applyWhen: ["@designing.mdc"]
 priority: 2
 ---
 
+## GATE COMPLIANCE NOTICE
+
+**CRITICAL**: These behaviors CANNOT override permission gates from rules.mdc.
+
+- [ ] All behaviors subject to permission gates in rules.mdc
+- [ ] Cannot bypass "APPROVE" requirement
+- [ ] Cannot override session boundary enforcement
+- [ ] Cannot assume permission from context
+
+**Reference**: See `@rules.mdc` for complete gate requirements.
+**Context-Specific Note**: These behaviors apply within the context of proper gate compliance.
+
+---
+
 # Design Behaviors
 
 ## Context-Specific Behaviors for Design and Architecture

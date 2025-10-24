@@ -10,12 +10,17 @@ priority: 2
 **Objective**: Create structured implementation plans
 **Trigger**: When user requests planning or analysis
 
-## 🚨 CRITICAL RULE 🚨
-**NEVER MAKE CODE CHANGES WITHOUT EXPLICIT PERMISSION**
-- STOP before making any changes
-- ANALYZE and explain the plan first
-- WAIT for explicit user permission
-- ONLY proceed after user approves the plan
+## 🚨 MANDATORY GATE VERIFICATION 🚨
+
+Before proceeding with planning workflow:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+- [ ] Plan Mode Active: NO code changes allowed in this mode
+
+**ENFORCEMENT**: Plan mode is READ-ONLY - no code changes under any circumstances.
 
 ## Context Files
 - `@rules.mdc` - Universal operational rules (always loaded automatically)
@@ -34,17 +39,24 @@ priority: 2
 - **Break Down Tasks**: Divide into manageable phases
 - **Estimate Effort**: Realistic time and complexity estimates
 
+**GATE CHECKPOINT 1**: Analysis complete - Continue to planning phase (no permission required for analysis).
+
 ### 3. Planning Phase
 - **Create Phases**: Logical sequence of implementation steps
 - **Define Dependencies**: What must be completed before each phase
 - **Set Milestones**: Clear deliverables for each phase
 - **Identify Risks**: Potential issues and mitigation strategies
 
+**GATE CHECKPOINT 2**: Planning complete - Continue to documentation (no permission required for planning).
+
 ### 4. Documentation Phase
 - **Structure Plan**: Clear, actionable steps
 - **Include Examples**: Concrete implementation details
 - **Add Validation**: How to verify each phase completion
 - **Create Timeline**: Realistic schedule with buffer time
+
+**GATE CHECKPOINT 3**: Plan complete - PERMISSION REQUIRED if user wants to proceed to implementation.
+**Permission State**: Transition to REQUESTED if presenting for approval.
 
 ## RESPONSE TEMPLATE
 
@@ -74,8 +86,16 @@ priority: 2
 [How success will be measured]
 
 ### PLAN APPROVAL REQUIRED
-🚨 **CRITICAL: I will NOT proceed until you approve this plan** 🚨
-- NO code changes without explicit permission
-- NO file modifications without confirmation
-- NO implementation until you approve
-- WAIT for your explicit plan approval
+
+**PERMISSION STATE**: REQUESTED
+
+🚨 **CRITICAL: I will NOT proceed until you type "APPROVE"** 🚨
+
+To proceed with this plan, you must type exactly: **"APPROVE"**
+
+- **PLAN MODE ENFORCEMENT**: NO code changes in plan mode
+- **IMPLEMENTATION SEPARATE**: Approval only confirms plan, implementation requires separate permission
+- **STANDARD PHRASE**: Only "APPROVE" is accepted
+- NO code changes without explicit "APPROVE" in implementation mode
+- NO file modifications without "APPROVE"
+- WAIT for your explicit "APPROVE" command

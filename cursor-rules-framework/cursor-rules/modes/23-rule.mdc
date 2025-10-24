@@ -1,5 +1,17 @@
 # RULE Prompt Protocol
 
+## 🚨 MANDATORY GATE VERIFICATION 🚨
+
+Before creating or modifying rules:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+- [ ] Rule creation requires explicit "APPROVE"
+
+**ENFORCEMENT**: Cannot create or modify rule files without "APPROVE".
+
 ## @RULE <rule_requirement>
 **Trigger**: When user requests creation of new Cursor rules
 **Flags**:
@@ -72,7 +84,18 @@
 - [ ] Validated against best practices
 
 ### RULE CREATION READY
-**I will NOT create the rule file until you say "Yes, create this rule"**
+
+**PERMISSION STATE**: REQUESTED
+
+**I will NOT create the rule file until you type "APPROVE"**
+
+To proceed with rule creation, you must type exactly: **"APPROVE"**
+
+- **FILE CREATION**: Requires explicit "APPROVE" command
+- **STANDARD PHRASE**: Only "APPROVE" is accepted (not "yes", "create", etc.)
+- NO rule file creation without "APPROVE"
+- NO file modifications without "APPROVE"
+- WAIT for explicit "APPROVE" command
 ```
 
 **Validation Checklist**:

@@ -1,7 +1,7 @@
 ---
 description: "Django framework best practices and patterns"
-alwaysApply: true
-priority: 1
+globs: ["**/*.py", "**/models.py", "**/views.py", "**/forms.py", "**/admin.py", "**/urls.py", "**/settings.py", "**/tests.py"]
+priority: 2
 ---
 
 # Django Framework Rules

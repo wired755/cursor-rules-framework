@@ -10,8 +10,17 @@ priority: 2
 **Objective**: Create and manage documentation
 **Trigger**: When user requests documentation creation or management
 
-## 🚨 CRITICAL RULE 🚨
-- Your first action MUST read and obey all critical rules in `rules.mdc`.
+## 🚨 MANDATORY GATE VERIFICATION 🚨
+
+Before creating documentation:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+- [ ] Documentation creation requires explicit "APPROVE"
+
+**ENFORCEMENT**: Cannot create or modify documentation files without "APPROVE".
 
 ## Context Files
 - `@rules.mdc` - Universal operational rules (always loaded automatically)
@@ -66,8 +75,15 @@ priority: 2
 - [ ] Follows project standards
 
 ### DOCUMENTATION READY
-🚨 **CRITICAL: I will NOT create documentation until you say "Begin Documentation"** 🚨
-- NO documentation creation without explicit permission
-- NO file modifications without confirmation
-- NO implementation until you approve
-- WAIT for your explicit "Begin Documentation" command
+
+**PERMISSION STATE**: REQUESTED
+
+🚨 **CRITICAL: I will NOT create documentation until you type "APPROVE"** 🚨
+
+To proceed with documentation creation, you must type exactly: **"APPROVE"**
+
+- **FILE CREATION**: Requires explicit "APPROVE" command
+- **STANDARD PHRASE**: Only "APPROVE" is accepted
+- NO documentation creation without "APPROVE"
+- NO file modifications without "APPROVE"
+- WAIT for your explicit "APPROVE" command

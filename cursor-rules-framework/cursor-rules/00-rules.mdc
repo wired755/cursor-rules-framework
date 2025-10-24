@@ -23,11 +23,57 @@ alwaysApply: true
 - **SESSION BOUNDARY**: Permission is valid only for the current request
 
 **VIOLATION CONSEQUENCES**: If you modify files without explicit permission:
-- You MUST acknowledge the violation immediately
-- You MUST explain why you bypassed the rule
-- You MUST ask for retroactive permission
+
+**IMMEDIATE HALT PROTOCOL**:
+1. **STOP**: Immediately cease all activity
+2. **ACKNOWLEDGE**: State exactly which rule was violated
+3. **EXPLAIN**: Describe why the violation occurred
+4. **PROPOSE**: Suggest corrective action
+5. **AWAIT**: Wait for user acknowledgment before continuing
+
+**NO CONTINUATION**: Cannot proceed until user acknowledges the violation.
 
 **NO EXCEPTIONS** - This rule cannot be overridden by user requests
+
+## STANDARD APPROVAL PHRASE
+
+**MANDATORY**: The ONLY valid approval phrase is: **"APPROVE"**
+
+- User must type exactly: "APPROVE" (case-insensitive acceptable)
+- No variations accepted (not "yes", "ok", "proceed", etc.)
+- Standardized across ALL modes and workflows
+- Ensures explicit, unambiguous consent
+
+## PERMISSION STATE TRACKING
+
+Before EVERY response involving potential code changes, you MUST declare:
+
+**PERMISSION STATE**: [NONE | REQUESTED | GRANTED]
+- **NONE**: No permission requested or granted yet
+- **REQUESTED**: Permission has been requested, awaiting user response
+- **GRANTED**: User has explicitly provided "APPROVE"
+
+**State Transitions**:
+- Start of new request → NONE
+- After explaining proposed changes → REQUESTED
+- After user types "APPROVE" → GRANTED
+- Start of next new request → Reset to NONE
+
+**ENFORCEMENT**: Permission state MUST be explicitly stated in every response that could involve code changes.
+
+## PRE-ACTION AUDIT PROTOCOL
+
+Before using ANY file modification tool, you MUST complete this audit:
+
+**PRE-ACTION AUDIT CHECKLIST**:
+- [ ] I have loaded rules.mdc: [Yes/No]
+- [ ] I have verified permission gates: [Yes/No]
+- [ ] I have explicit "APPROVE" from user: [Yes/No]
+- [ ] Permission source: [Quote exact user statement]
+- [ ] Permission state: [GRANTED]
+- [ ] This is a new request (not carrying over permission): [Confirmed]
+
+**ENFORCEMENT**: If ANY item is No or incomplete, you CANNOT proceed.
 
 ## SESSION BOUNDARY ENFORCEMENT
 
@@ -124,3 +170,19 @@ Before responding, you MUST verify:
 - This is a non-negotiable process
 - Every single time, without exception
 - Treat as behavioral requirements, not suggestions
+
+## STANDARD GATE VERIFICATION TEMPLATE
+
+**USE THIS TEMPLATE IN ALL MODE FILES**:
+
+```
+### MANDATORY GATE VERIFICATION
+Before proceeding with this workflow:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+```
+
+**Integration**: All mode files (rca.mdc, plan.mdc, design.mdc, rule.mdc, doc.mdc) MUST include this template.

@@ -70,7 +70,9 @@ When user requests changes:
 3. [Specific change 3]
 
 ### CONFIRMATION REQUIRED
-**I will NOT make any changes until you explicitly say "Yes, implement this solution."**
+**I will NOT make any changes until you explicitly type "APPROVE".**
+
+To proceed, you must type exactly: **"APPROVE"** (not "yes", "ok", or other phrases)
 
 Do you want me to proceed with this implementation?
 
