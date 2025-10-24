@@ -1,0 +1,33 @@
+---
+description: "Project-specific guidelines and patterns"
+applyWhen: ["@project.mdc"]
+priority: 2
+---
+
+# Project Context
+
+## PROJECT OVERVIEW
+This file contains project-specific guidelines and patterns for the Cursor Rules Framework.
+
+## PROJECT-SPECIFIC PATTERNS
+- **Framework Integration**: Django, Oracle DB, React, Terraform, Ruby, RDS, EC2
+- **Session Management**: Process status tracking, state transitions, error handling
+- **Compliance Requirements**: HIPAA compliance, PII protection, audit trails
+
+## PROJECT CONTEXT
+- **Technology Stack**: Django backend with Oracle database
+- **Frontend**: React components with modern UI patterns
+- **Infrastructure**: AWS with Terraform for infrastructure as code
+- **Data Management**: Oracle database with specific schema requirements
+
+## PROJECT-SPECIFIC GUIDELINES
+- **Security**: HIPAA compliance requirements
+- **Data Handling**: PII protection and audit trail requirements
+- **Session Management**: Process status tracking and state transitions
+- **Error Handling**: Healthcare-specific error handling patterns
+
+## COMMON PROJECT PATTERNS
+- **Data Flow**: Context → Template → Display patterns
+- **Validation**: Form validation with healthcare compliance
+- **Testing**: Healthcare-specific testing requirements
+- **Documentation**: Compliance documentation standards

@@ -1,0 +1,139 @@
+# NO CHANGES FIRST - GLOBAL RULE
+
+## 🚨 CRITICAL GLOBAL RULE 🚨
+**NEVER MAKE CODE CHANGES WITHOUT EXPLICIT PERMISSION**
+
+This rule applies to ALL modes and ALL interactions.
+
+## MANDATORY PROTOCOL
+
+### 1. STOP IMMEDIATELY
+- When user requests ANY changes, STOP
+- Do NOT make any code changes
+- Do NOT modify any files
+- Do NOT implement anything
+
+### 2. ANALYZE FIRST
+- Provide complete analysis
+- Explain the solution clearly
+- Show what needs to be changed
+- Identify potential impacts
+
+### 3. WAIT FOR PERMISSION
+- Ask for explicit permission
+- Wait for user confirmation
+- Only proceed after explicit "Yes"
+- Use specific confirmation phrases
+
+## CONFIRMATION PHRASES BY MODE
+
+### Design Mode
+- "Begin Implementation"
+- "Yes, implement this design"
+- "Proceed with implementation"
+
+### Plan Mode
+- "Approve this plan"
+- "Yes, proceed with this plan"
+- "Implement this plan"
+
+### RCA Mode
+- "Yes, implement this fix"
+- "Proceed with the fix"
+- "Implement the solution"
+
+### Anti-Cyclic Mode
+- "Yes, implement this solution"
+- "Proceed with implementation"
+- "Implement the changes"
+
+## EMERGENCY STOP CONDITIONS
+
+Stop immediately if:
+- User hasn't given explicit permission
+- You're about to make changes without confirmation
+- You're not sure if you have permission
+- The user seems uncertain about the changes
+
+## VIOLATION PROTOCOL
+
+If you accidentally make changes without permission:
+1. IMMEDIATELY stop and apologize
+2. Explain what you should have done instead
+3. Ask if user wants you to revert the changes
+4. Commit to following the protocol going forward
+
+## ENFORCEMENT CHECKLIST
+
+Before making ANY changes, verify:
+- [ ] User explicitly said "Yes" or equivalent
+- [ ] I explained the solution first
+- [ ] I waited for confirmation
+- [ ] I'm not making assumptions about permission
+- [ ] I'm following the correct confirmation phrase for the mode
+
+## GLOBAL PRINCIPLES
+
+### 1. Permission First
+- Always get explicit permission before changes
+- Never assume permission is granted
+- Use clear confirmation phrases
+- Wait for user response
+
+### 2. Analysis First
+- Always analyze before implementing
+- Explain what needs to be done
+- Show the solution clearly
+- Identify potential impacts
+
+### 3. Safety First
+- When in doubt, don't make changes
+- Ask for clarification
+- Get explicit confirmation
+- Follow the protocol strictly
+
+## MODE-SPECIFIC RULES
+
+### Design Mode
+- Analyze requirements first
+- Create architectural design
+- Explain implementation strategy
+- Wait for "Begin Implementation"
+
+### Plan Mode
+- Analyze requirements first
+- Create structured plan
+- Explain implementation phases
+- Wait for plan approval
+
+### RCA Mode
+- Analyze the problem first
+- Identify root cause
+- Propose simple fix
+- Wait for "Yes, implement this fix"
+
+### Anti-Cyclic Mode
+- Analyze impact first
+- Identify potential cycles
+- Propose safe solution
+- Wait for "Yes, implement this solution"
+
+## SUCCESS METRICS
+
+### Quantitative
+- Zero unauthorized changes
+- 100% permission rate
+- Zero violations of protocol
+
+### Qualitative
+- Clear communication
+- Proper analysis
+- Explicit permissions
+- Safe implementations
+
+## REMEMBER
+
+**This rule is NON-NEGOTIABLE**
+**It applies to ALL interactions**
+**It overrides ALL other rules**
+**When in doubt, DON'T make changes**

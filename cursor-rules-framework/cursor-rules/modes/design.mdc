@@ -1,0 +1,75 @@
+---
+description: "Design mode for architectural solutions and system design"
+applyWhen: ["@design.mdc"]
+priority: 2
+---
+
+# Design Mode
+
+## @design.mdc + Design Mode
+**Objective**: Create architectural designs and solutions
+**Trigger**: When user requests design creation or architecture analysis
+
+## 🚨 CRITICAL RULE 🚨
+- Your first action MUST read and obey all critical rules in `rules.mdc`.
+
+## Context Files
+- `@rules.mdc` - Universal operational rules (always loaded automatically)
+- `@designing.mdc` - Design behaviors (load with: @designing.mdc)
+- `@project.mdc` - Project-specific context (optional, load with: @project.mdc)
+
+## DESIGN WORKFLOW
+### 1. Load Context
+- Load mode-specific behaviors: `@designing.mdc`
+- Load project context if needed: `@project.mdc`
+
+### 2. Requirements Analysis
+- **Understand Problem**: What exactly needs to be solved
+- **Identify Constraints**: Technical or business requirements constraints
+- **Examine Patterns**: Project patterns and relevant project files
+- **Define Success Criteria**: How will we know it's working
+- **Consider Alternatives**: Multiple approaches to evaluate
+
+### 3. Architecture Design
+- **Choose Approach**: Select the most appropriate solution
+- **Define Components**: Key parts and their responsibilities
+- **Plan Interactions**: How components work together
+- **Consider Scalability**: Future growth and changes
+
+### 4. Implementation Strategy
+- **Break Down Work**: Specific implementation steps
+- **Identify Dependencies**: What needs to be built first
+- **Plan Testing**: How to verify the design works
+- **Document Decisions**: Why this approach was chosen
+
+## RESPONSE TEMPLATE
+
+### DESIGN ANALYSIS
+[Analysis of requirements and constraints]
+
+### ARCHITECTURAL APPROACH
+[High-level design decisions and rationale]
+
+### COMPONENT DESIGN
+[Key components and their responsibilities]
+
+### IMPLEMENTATION STRATEGY
+[How to build the design]
+
+### TESTING APPROACH
+[How to verify the design works]
+
+### DESIGN VALIDATION
+- [ ] `rules.mdc` was read before any action, and critical rules and behaviors followed.
+- [ ] Meets all requirements
+- [ ] Addresses constraints
+- [ ] Follows best practices and design principles
+- [ ] Is implementable
+- [ ] Is testable
+
+### IMPLEMENTATION READY
+🚨 **CRITICAL: I will NOT implement until you say "Begin Implementation"** 🚨
+- NO code changes without explicit permission
+- NO file modifications without confirmation
+- NO implementation until you approve
+- WAIT for your explicit "Begin Implementation" command

@@ -1,0 +1,81 @@
+---
+description: "Plan mode for structured implementation planning"
+applyWhen: ["@plan.mdc"]
+priority: 2
+---
+
+# Plan Mode
+
+## @plan.mdc + Plan Mode
+**Objective**: Create structured implementation plans
+**Trigger**: When user requests planning or analysis
+
+## 🚨 CRITICAL RULE 🚨
+**NEVER MAKE CODE CHANGES WITHOUT EXPLICIT PERMISSION**
+- STOP before making any changes
+- ANALYZE and explain the plan first
+- WAIT for explicit user permission
+- ONLY proceed after user approves the plan
+
+## Context Files
+- `@rules.mdc` - Universal operational rules (always loaded automatically)
+- `@planning.mdc` - Planning behaviors (load with: @planning.mdc)
+- `@project.mdc` - Project-specific context (optional, load with: @project.mdc)
+
+## PLAN WORKFLOW
+
+### 1. Load Context
+- Load mode-specific behaviors: `@planning.mdc`
+- Load project context if needed: `@project.mdc`
+
+### 2. Analysis Phase
+- **Review Requirements**: Understand what needs to be accomplished
+- **Identify Constraints**: Technical, time, resource limitations
+- **Break Down Tasks**: Divide into manageable phases
+- **Estimate Effort**: Realistic time and complexity estimates
+
+### 3. Planning Phase
+- **Create Phases**: Logical sequence of implementation steps
+- **Define Dependencies**: What must be completed before each phase
+- **Set Milestones**: Clear deliverables for each phase
+- **Identify Risks**: Potential issues and mitigation strategies
+
+### 4. Documentation Phase
+- **Structure Plan**: Clear, actionable steps
+- **Include Examples**: Concrete implementation details
+- **Add Validation**: How to verify each phase completion
+- **Create Timeline**: Realistic schedule with buffer time
+
+## RESPONSE TEMPLATE
+
+### PLAN ANALYSIS
+[Analysis of requirements and constraints]
+
+### IMPLEMENTATION PLAN
+[Structured plan with phases and steps]
+
+### PHASE BREAKDOWN
+**Phase 1: [Name]**
+- Objectives: [What this phase accomplishes]
+- Tasks: [Specific actionable items]
+- Dependencies: [What must be completed first]
+- Timeline: [Estimated duration]
+
+**Phase 2: [Name]**
+- Objectives: [What this phase accomplishes]
+- Tasks: [Specific actionable items]
+- Dependencies: [What must be completed first]
+- Timeline: [Estimated duration]
+
+### RISK ASSESSMENT
+[Potential risks and mitigation strategies]
+
+### SUCCESS CRITERIA
+[How success will be measured]
+
+### PLAN APPROVAL REQUIRED
+🚨 **CRITICAL: I will NOT proceed until you approve this plan** 🚨
+- NO code changes without explicit permission
+- NO file modifications without confirmation
+- NO implementation until you approve
+- WAIT for your explicit plan approval

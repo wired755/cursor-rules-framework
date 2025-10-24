@@ -1,0 +1,162 @@
+# Anti-Cyclic Change Prevention
+
+## @anti-cyclic.mdc + Anti-Cyclic Mode
+**Objective**: Prevent Cursor from making changes that create cycles or require reverting previous changes
+**Trigger**: When user requests changes that might impact existing functionality
+
+## 🚨 CRITICAL RULE 🚨
+**NEVER MAKE CODE CHANGES WITHOUT EXPLICIT PERMISSION**
+- STOP before making any changes
+- ANALYZE impact and explain the solution first
+- WAIT for explicit user permission
+- ONLY proceed after user says "Yes, implement this solution"
+
+## CYCLIC CHANGE PREVENTION RULES
+
+### 1. Change Impact Analysis
+Before making ANY change, analyze:
+- **What will this change break?** - Identify dependent code
+- **What other changes will be needed?** - Check for cascading effects
+- **Will this require reverting previous changes?** - Look for circular dependencies
+- **Are we fixing a symptom or the root cause?** - Address the real problem
+
+### 2. Change Validation Protocol
+- **Check Dependencies**: What code depends on what you're changing
+- **Verify Side Effects**: Will this change break other functionality
+- **Test Integration**: Ensure change works with existing code
+- **Document Impact**: Note what might be affected
+
+### 3. Cyclic Change Detection
+Watch for these patterns:
+- **Change A → Breaks B → Fix B → Breaks A** (Classic cycle)
+- **Add Feature → Breaks Existing → Remove Feature → Need Feature** (Requirement cycle)
+- **Optimize Code → Breaks Tests → Fix Tests → Breaks Optimization** (Quality cycle)
+- **Refactor → Breaks Integration → Revert → Need Refactor** (Architecture cycle)
+
+## ANTI-CYCLIC WORKFLOW
+
+### 1. Pre-Change Analysis
+- **Map Dependencies**: What depends on what you're changing
+- **Identify Risks**: What could break as a result
+- **Plan Mitigation**: How to handle potential issues
+- **Consider Alternatives**: Is there a simpler approach?
+
+### 2. Change Implementation
+- **Make Minimal Changes**: Only change what's absolutely necessary
+- **Test Incrementally**: Verify each change works before proceeding
+- **Document Changes**: Keep track of what was changed and why
+- **Monitor Side Effects**: Watch for unexpected impacts
+
+### 3. Post-Change Validation
+- **Verify Functionality**: Ensure the change works as intended
+- **Check Dependencies**: Confirm dependent code still works
+- **Test Integration**: Verify the change integrates properly
+- **Document Results**: Note any issues or unexpected effects
+
+## RESPONSE TEMPLATE
+
+### CHANGE IMPACT ANALYSIS
+- **Dependencies**: [What other code depends on this change]
+- **Side Effects**: [What could break as a result]
+- **Mitigation**: [How to handle potential issues]
+- **Alternatives**: [Simpler approaches to consider]
+
+### IMPLEMENTATION PLAN
+1. [Specific change with minimal impact]
+2. [Testing strategy for each change]
+3. [Rollback plan if issues arise]
+
+### CYCLIC CHANGE PREVENTION
+- [ ] Analyzed all dependencies
+- [ ] Identified potential side effects
+- [ ] Planned mitigation strategies
+- [ ] Considered simpler alternatives
+- [ ] Verified change won't create cycles
+
+### CONFIRMATION REQUIRED
+🚨 **CRITICAL: I will NOT make changes until you say "Yes, implement this solution"** 🚨
+- NO code changes without explicit permission
+- NO file modifications without confirmation
+- NO implementation until you approve
+- WAIT for your explicit "Yes, implement this solution" command
+
+## ANTI-CYCLIC PRINCIPLES
+
+### 1. Root Cause First
+- **Fix the real problem**: Don't just address symptoms
+- **Understand the system**: Know how components interact
+- **Question assumptions**: Verify what you think you know
+- **Start simple**: Try the simplest solution first
+
+### 2. Minimal Impact Changes
+- **Change only what's necessary**: Don't modify unrelated code
+- **Preserve existing functionality**: Don't break what works
+- **Test incrementally**: Verify each change before proceeding
+- **Document everything**: Keep track of what was changed
+
+### 3. Dependency Awareness
+- **Map the system**: Understand how components depend on each other
+- **Check before changing**: Verify what depends on what you're changing
+- **Plan for side effects**: Anticipate what might break
+- **Have a rollback plan**: Know how to undo changes if needed
+
+### 4. Integration Testing
+- **Test the whole system**: Don't just test individual components
+- **Verify end-to-end**: Ensure the change works in context
+- **Check performance**: Ensure changes don't degrade performance
+- **Validate assumptions**: Confirm the change works as expected
+
+## EMERGENCY STOP CONDITIONS
+
+Stop immediately if you detect:
+- **Circular Dependencies**: Change A requires change B, which requires change A
+- **Cascading Failures**: One change breaks multiple other things
+- **Requirement Conflicts**: Change conflicts with existing requirements
+- **Architecture Violations**: Change violates established patterns
+
+## CYCLIC CHANGE PREVENTION CHECKLIST
+
+Before making ANY change:
+- [ ] Analyzed all dependencies and side effects
+- [ ] Identified the root cause, not just symptoms
+- [ ] Considered simpler alternatives
+- [ ] Planned for potential issues
+- [ ] Verified the change won't create cycles
+- [ ] Have a rollback plan ready
+- [ ] Got explicit user permission
+
+## COMMON CYCLIC PATTERNS TO AVOID
+
+### 1. The "Fix and Break" Cycle
+- **Pattern**: Fix A → Breaks B → Fix B → Breaks A
+- **Prevention**: Analyze all dependencies before making changes
+- **Solution**: Fix both A and B together, or find a different approach
+
+### 2. The "Feature Toggle" Cycle
+- **Pattern**: Add feature → Breaks existing → Remove feature → Need feature
+- **Prevention**: Test integration before adding features
+- **Solution**: Implement feature properly from the start
+
+### 3. The "Optimization" Cycle
+- **Pattern**: Optimize → Breaks tests → Fix tests → Breaks optimization
+- **Prevention**: Ensure optimization doesn't break functionality
+- **Solution**: Optimize and update tests together
+
+### 4. The "Refactor" Cycle
+- **Pattern**: Refactor → Breaks integration → Revert → Need refactor
+- **Prevention**: Plan refactoring carefully with integration testing
+- **Solution**: Refactor incrementally with proper testing
+
+## SUCCESS METRICS
+
+### Quantitative Metrics
+- **Zero cyclic changes**: No changes that require reverting previous changes
+- **Minimal side effects**: Changes don't break other functionality
+- **Fast rollback**: Can quickly undo changes if needed
+- **Stable system**: System remains functional throughout changes
+
+### Qualitative Metrics
+- **Clear dependencies**: Understand how components interact
+- **Predictable behavior**: Changes have expected results
+- **Maintainable code**: Changes don't make code harder to maintain
+- **User satisfaction**: Changes solve problems without creating new ones

@@ -1,0 +1,340 @@
+# MWA Django Project - Cursor Rules
+
+## Project Overview
+This is a Django-based medical practice compensation management system for anesthesia providers. The system manages complex compensation workflows, data imports/exports, and process state management.
+
+## Core Technologies & Patterns
+- Django 5.0+ with custom admin interface (Jazzmin)
+- Oracle Database with legacy table structures
+- Import/Export functionality using django-import-export
+- Session-based process state management
+- Mixin-heavy architecture for shared functionality
+- Custom admin interface with modals and AJAX
+
+## Architecture Guidelines
+
+### 1. Follow Existing Patterns
+- **Mixins over Inheritance**: Use mixins for shared functionality (ProcessStatusMixin, CompensationMixin, etc.)
+- **Session State Management**: Use request.session for process state, not database storage
+- **Custom Admin Views**: Follow the pattern of @admin.site.admin_view decorators
+- **Resource Classes**: Use CommonResource base class for all import/export resources
+
+### 2. Model Conventions
+- **Always specify db_column**: All model fields must have explicit db_column mappings
+- **Use verbose_name**: All fields require verbose_name for admin display
+- **Follow legacy naming**: Maintain existing table and column naming conventions (e.g., COMP_POST_DT)
+- **Audit fields**: Include created_date, updated_date, created_by, updated_by where applicable
+
+### 3. Admin Interface Rules
+- **Extend CommonModelAdmin**: All admin classes should inherit from CommonModelAdmin
+- **Use BulkImportExportMixin**: For models with import/export functionality
+- **Register with mwa_admin_site**: Always use the custom admin site, not default
+- **Implement get_comp_post_date**: For models with compensation post dates
+
+### 4. Import/Export Patterns
+- **Extend CommonResource**: All resource classes must inherit from CommonResource
+- **Implement get_field_metadata**: Define comprehensive field metadata for all resources
+- **Use file_headers**: Define file_headers tuple for headerless import files
+- **Validate referential integrity**: Check foreign key relationships during import
+
+## Code Quality Standards
+
+### 1. Django Best Practices Integration
+- **Write clear, technical responses**: Provide precise Django examples in code
+- **Follow PEP 8 compliance**: Maintain Django coding style guide standards
+- **Use descriptive naming**: Apply proper naming conventions (lowercase with underscores for functions/variables)
+- **Prioritize readability**: Code should be maintainable and self-documenting
+
+### 2. Error Handling
+- **Use specific exceptions**: Prefer ValidationError, WebServiceError over generic Exception
+- **Implement at view level**: Use Django's built-in error handling mechanisms
+- **Validate form and model data**: Use Django's validation framework consistently
+- **Use try-except blocks**: Handle exceptions in business logic and views
+- **Log appropriately**: Use logger.debug for development, logger.error for production issues
+- **Handle Oracle specificities**: Account for Oracle-specific data types and behaviors
+- **Customize error pages**: Improve user experience with helpful 404/500 pages
+
+### 3. Session Management
+- **Initialize process status**: Always call init_process_status before process operations
+- **Update session atomically**: Use update_session method for process state changes
+- **Clear session on errors**: Implement proper cleanup for failed operations
+
+### 4. Security & Permissions
+- **Use decorators**: Apply @login_required and @staff_member_required to all admin views
+- **Apply Django security best practices**: Implement CSRF protection, SQL injection protection, XSS prevention
+- **Validate user permissions**: Check user.is_staff for administrative operations  
+- **Sanitize inputs**: Validate all form inputs and file uploads
+
+### 5. Performance Optimization
+- **Optimize query performance**: Use Django ORM's select_related and prefetch_related for Oracle database
+- **Implement database indexing**: Use query optimization techniques for better performance
+- **Session-based caching**: Use request.session for process state (not external cache systems)
+- **Bulk operations**: Leverage django-import-export for large dataset handling
+
+### 6. Frontend Guidelines
+- **Use existing modals**: Follow modal_helper.js patterns for new modals
+- **Update process status**: Use process_status_updater.js for dynamic updates
+- **Maintain consistency**: Follow existing CSS classes and styling patterns
+
+## Problem-Solving Guidelines
+
+### 1. Simplicity First Principle
+- **Start with the simplest possible solution**: Always begin with the most direct fix
+- **Question complexity**: Ask "Is this architectural change actually needed?"
+- **YAGNI**: You Aren't Gonna Need It - don't build features you don't currently need
+- **2-3 line fixes**: If the problem can be solved in 2-3 lines, do that first
+- **Data format issues**: Usually require simple formatting changes, not architectural changes
+
+### 2. Problem Classification
+- **Data Format Issues**: Usually require simple formatting changes, not architectural changes
+- **Validation Errors**: Often just data format or field mapping issues
+- **UI Issues**: Check templates and context before modifying backend
+- **Performance Issues**: Only optimize after identifying actual bottlenecks
+
+### 3. Solution Validation
+Before implementing any solution, ask:
+- Can this be solved with a simple data format change?
+- Is this actually a data flow problem or just a formatting problem?
+- Would a 2-3 line fix work instead of a new function/class?
+- Am I over-engineering a simple problem?
+
+### 4. Code Review Checklist
+- [ ] Did I start with the simplest solution?
+- [ ] Am I adding complexity that isn't needed?
+- [ ] Could this be solved with a few lines instead of new functions?
+- [ ] Am I following patterns just for the sake of following patterns?
+
+## Troubleshooting Aliases
+
+### ROOT CAUSE: <problem>
+**Automatic Protocol:**
+1. Analyze the described problem
+2. Identify root cause and validate assumptions
+3. Provide step-by-step solution with refactored code
+4. Make no actual code changes
+5. Follow all .cursorrules guidelines
+
+### SIMPLE FIX: <problem>  
+**Automatic Protocol:**
+1. Look for 2-3 line solutions first
+2. Avoid over-engineering
+3. Question architectural changes
+4. Provide minimal code examples
+5. Make no actual changes
+
+## Common Problem Patterns
+
+### Data Format Issues
+- **Symptoms**: Validation errors, "not one of the available choices"
+- **Root Cause**: Data sent in wrong format (comma-separated vs individual values)
+- **Solution**: Simple data formatting change (2-3 lines)
+- **Example**: `fields: selectedFields.join(',')` → proper individual field values
+
+### UI Issues
+- **Symptoms**: Missing data, incorrect display
+- **Root Cause**: Template context issues, not backend problems
+- **Solution**: Check templates first, add context if needed
+- **Example**: Missing template variables vs backend logic issues
+
+### Validation Errors
+- **Symptoms**: Form validation failures
+- **Root Cause**: Usually data format or field mapping
+- **Solution**: Check data format before modifying validation logic
+- **Example**: Field choices mismatch vs validation rule problems
+
+## Development Rules
+
+### 1. No Unprompted Changes
+- **Explicit user requests only**: Never make code changes without explicit user instruction
+- **Explain before implementing**: Always describe what needs to be done before making changes
+- **Wait for confirmation**: Only proceed with changes when specifically asked
+- **Start simple**: Always propose the simplest solution first
+
+### 2. Data Flow Understanding
+- **Check templates first**: When debugging UI issues, always examine templates before backend
+- **Trace data flow**: Follow data from context through template to display
+- **Use print statements**: Add debugging output to understand actual data flow
+- **Don't assume**: Verify how things actually work rather than making assumptions
+- **Format issues first**: Check data format before assuming logic problems
+
+### 3. Template Debugging Protocol
+- **Template inspection**: Always check what data is available in template context
+- **Context verification**: Verify template variables exist before proposing backend changes
+- **Simple solutions first**: Try context additions before complex backend modifications
+
+### 4. File Organization
+- **Mixins directory**: Business logic mixins go in mixins/ directory
+- **Resources pattern**: Import/export resources in resources.py
+- **Static organization**: JS files in static/js/, CSS in static/css/
+- **Template structure**: Admin templates in templates/admin/
+
+## Specific Implementation Guidelines
+
+### 1. Process Status Management
+```python
+# Always initialize process status
+mixin = ProcessStatusMixin()
+mixin.init_process_status(request)
+
+# Use session for process state
+comp_post_date = request.session.get("comp_post_date")
+
+# Update process status properly
+mixin.update_session(request, validated_date=now())
+```
+
+### 2. Import Resource Implementation
+```python
+class MyResource(CommonResource):
+    file_headers = ('field1', 'field2', 'field3')
+    
+    class Meta:
+        model = MyModel
+        fields = ('field1', 'field2', 'field3')
+        import_id_fields = ['field1']
+    
+    def get_field_metadata(self, request=None):
+        return {
+            "field1": {
+                "verbose_name": "Field 1",
+                "readonly": False,
+                "importable": True,
+                "exportable": True,
+                "is_auto": False,
+                "default": None,
+            }
+        }
+```
+
+### 3. Admin View Pattern
+```python
+@require_POST
+@login_required  
+@staff_member_required
+def my_admin_view(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden()
+    
+    try:
+        # Implementation
+        pass
+    except ValidationError as e:
+        messages.error(request, str(e))
+        return redirect("admin:index")
+```
+
+### 4. Modal JavaScript Pattern
+```javascript
+// Follow existing modal patterns
+function showMyModal() {
+    $('#myModal').modal('show');
+}
+
+function handleMyModalSubmit() {
+    // Use existing AJAX patterns
+    $.post(url, data)
+        .done(function(response) {
+            // Handle success
+        })
+        .fail(function(xhr) {
+            // Handle error
+        });
+}
+```
+
+## Testing & Validation
+
+### 1. Django Testing Integration
+- **Use Django's built-in testing tools**: Implement unittest and pytest-django for code quality
+- **Follow Django testing best practices**: Test models, views, forms, and integrations
+- **Test security implementations**: Verify authentication, permissions, and data validation
+
+### 2. Data Validation
+- **Validate imports**: Test import functionality with sample data
+- **Check process flows**: Verify complete compensation process workflows
+- **Test edge cases**: Handle empty data, invalid formats, duplicate entries
+
+### 2. UI Testing
+- **Modal functionality**: Ensure all modals work correctly
+- **Process status updates**: Verify dynamic status updates work
+- **Error handling**: Test error message display and handling
+
+### 3. Database Testing
+- **Oracle compatibility**: Test with actual Oracle database
+- **Transaction handling**: Verify database transactions work correctly
+- **Performance**: Monitor query performance for large datasets
+
+## Common Pitfalls to Avoid
+
+1. **Don't modify legacy table structures** without explicit requirements
+2. **Don't bypass session management** for process state
+3. **Don't create new admin views** without proper decorators
+4. **Don't assume template context** exists without verification
+5. **Don't ignore Oracle-specific** data type considerations
+6. **Don't create imports** without proper field metadata
+7. **Don't modify closed compensation periods** without validation
+
+## Anti-Patterns to Avoid
+
+### Over-Engineering
+- Creating new functions for simple data formatting
+- Adding architectural layers for 2-3 line fixes
+- Following patterns without questioning if they're needed
+- Building "future-proof" solutions for current problems
+
+### Assumption-Based Solutions
+- Assuming data flow problems without checking format
+- Assuming backend issues without checking templates
+- Assuming architectural problems without checking simple fixes
+- Assuming complexity is needed without trying simple solutions first
+
+## Pre-Solution Validation Questions
+
+1. **Is this actually a data format issue?**
+2. **Can this be solved in 2-3 lines?**
+3. **Am I over-engineering a simple problem?**
+4. **Do I need new functions/classes for this?**
+5. **Am I following patterns just because they exist?**
+6. **What's the simplest possible solution?**
+7. **Have I checked templates before backend?**
+8. **Is this complexity actually needed?**
+
+## Documentation Requirements
+
+- Update README.md for any new features
+- Document any new mixins or resources
+- Add docstrings to all new functions
+- Update context.md for any behavioral changes
+- Maintain field metadata documentation
+
+## Architectural Decision Record
+
+### Django Best Practice Adaptations for MWA
+
+| Standard Django Practice | MWA Implementation | Justification |
+|---------------------------|-------------------|---------------|
+| Use Class-Based Views (CBVs) | Function-Based Views with decorators | Consistency with existing admin interface patterns |
+| Business logic in models | Business logic in mixins | Complex compensation workflows require shared mixin architecture |
+| Avoid raw SQL | Use SQLProcedureMixin | Oracle stored procedures required for legacy integration and performance |
+| Use DRF for JSON APIs | Custom JsonResponse patterns | Internal admin system doesn't require full API framework |
+| PostgreSQL/MySQL databases | Oracle Database | Legacy medical practice system integration requirement |
+| Redis/Celery for background tasks | Session-based state management | Simpler architecture appropriate for admin workflows |
+| Multiple Django apps | Single app with mixin modularity | Tightly integrated compensation management domain |
+
+### Convention Over Configuration Adaptations
+- **Follow Django's URL patterns**: Use clear, RESTful URL structures
+- **Apply Django forms and validation**: Maintain form handling best practices
+- **Use Django templates**: Follow MVT pattern for template rendering
+- **Security first**: Implement Django's built-in security features
+- **Performance optimization**: Apply Django ORM optimization within Oracle constraints
+
+## When in Doubt
+
+1. **Start with the simplest solution** - 2-3 lines before architectural changes
+2. **Follow existing patterns** rather than creating new ones
+3. **Check the context.md** file for specific requirements  
+4. **Look at similar implementations** in the codebase
+5. **Apply Django best practices** within project architectural constraints
+6. **Ask for clarification** rather than making assumptions
+7. **Test thoroughly** before considering changes complete
+8. **Question whether you're over-engineering** - if the fix is simple, keep it simple 

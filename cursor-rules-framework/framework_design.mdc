@@ -1,0 +1,324 @@
+# Cursor Rules Framework Design
+
+## Purpose and Context
+
+### Why This Framework Exists
+The Cursor Rules Framework addresses the critical need for structured, consistent AI assistant behavior in software development workflows. Traditional approaches to AI assistant rules suffer from:
+
+- **Inconsistent Behavior**: AI responses vary unpredictably across similar tasks
+- **Permission Violations**: AI makes unauthorized code changes without explicit consent
+- **Context Overload**: Too many rules create conflicting instructions and performance issues
+- **Maintenance Complexity**: Complex rule hierarchies become unmaintainable over time
+- **Lack of Workflow Structure**: No systematic approach to problem-solving and development tasks
+
+### Guiding Principles
+1. **Simplicity First**: Start with the simplest solution that works
+2. **Separation of Concerns**: Behaviors separate from workflows
+3. **Context-Specific Organization**: Behaviors in appropriate context files
+4. **Performance First**: Optimize for token usage and processing speed
+5. **Research-Driven**: Follow patterns from successful implementations
+6. **Permission-Based Control**: Explicit user consent required for all changes
+7. **Consistency**: Same behavior across all prompts and contexts
+8. **Enforcement-First Design**: Rules must be enforceable, not just descriptive
+9. **Accountability**: Violation tracking and acknowledgment mechanisms
+10. **No Override Policy**: Rules cannot be bypassed by user requests
+
+## Design Philosophy
+
+### Simplicity, Single Responsibility, Direct File Tagging
+The framework prioritizes simplicity over complexity, following the principle that the best solution is often the simplest one that works. Each component has a single, well-defined responsibility, and interactions are direct and unambiguous.
+
+### Architectural Boundaries
+- **No Meta-Frameworks**: Avoid creating frameworks for frameworks
+- **Minimal Dependencies**: Reduce interdependencies between components
+- **Direct File Tagging**: Use `@filename.mdc` instead of complex prompt resolution
+- **Clear Boundaries**: Each file type has distinct responsibilities
+- **Performance Optimization**: Minimize token usage and processing overhead
+
+### Research-Driven Design
+Based on analysis of 50+ successful Cursor rules implementations, the framework follows proven patterns:
+- **Universal Rules Limit**: Maximum 3-5 `alwaysApply: true` rules across entire framework
+- **Context-Specific Organization**: Behaviors belong in context-specific files
+- **Separation of Concerns**: Separate behaviors from workflows
+- **Direct File References**: Use `@plan.mdc` instead of `@PLAN` for clarity
+
+## Enforcement Mechanisms
+
+### Rule Compliance System
+The framework includes mandatory enforcement mechanisms to prevent rule bypassing:
+
+#### Permission Gates
+- **Explicit Permission**: All file modifications require explicit user confirmation
+- **Verification Required**: Must state exact tool and action before proceeding
+- **No Assumptions**: Cannot proceed on implicit or assumed permission
+- **Violation Consequences**: Must acknowledge and explain any rule violations
+
+#### Compliance Validation
+- **Pre-Action Audit**: Verify rule compliance before any action
+- **Compliance Reporting**: Must state compliance status for each action
+- **No Exceptions**: Incomplete compliance is not allowed
+- **Accountability**: Track and acknowledge any rule violations
+
+#### User Override Prevention
+- **Rule Priority**: Rules have higher priority than user requests
+- **Conflict Resolution**: Rules win when conflicting with user requests
+- **Explanation Required**: Must explain why rules cannot be overridden
+- **Alternative Suggestions**: Must propose rule-compliant alternatives
+
+### Single Source of Truth Architecture
+- **Core Rules**: All enforcement mechanisms centralized in `rules.mdc`
+- **Reference Pattern**: Mode and behavior files reference core rules
+- **No Duplication**: Avoid repeating enforcement mechanisms
+- **Consistent Application**: Same enforcement rules apply everywhere
+
+## Rule Bypass Prevention
+
+### Common Bypass Vectors
+1. **Permission Lying**: AI claiming permission without explicit confirmation
+2. **Rule Skipping**: Bypassing mandatory workflow steps
+3. **Context Override**: User requests overriding rule structure
+4. **No Accountability**: Violating rules without consequences
+
+### Prevention Mechanisms
+1. **Enhanced Permission Gates**: Multi-step verification with exact confirmation
+2. **Compliance Validation**: Mandatory pre-action rule compliance checks
+3. **Accountability System**: Violation tracking and acknowledgment
+4. **No Override Policy**: Rules cannot be bypassed for any reason
+
+### Implementation Strategy
+- **Strengthen Existing Rules**: Enhance current mandatory rules with enforcement
+- **Reference Pattern**: Mode files reference core rules instead of duplicating
+- **Centralized Control**: All enforcement logic in `rules.mdc`
+- **Consistent Application**: Same enforcement mechanisms everywhere
+
+## Functional Requirements
+
+### Behavior Expected from Each .mdc File Type
+
+#### Universal Rules (rules.mdc)
+- **Permission Workflow**: Always require explicit user consent before making changes
+- **Core Coding Standards**: Enforce basic code quality and security practices
+- **Consistency**: Provide consistent behavior across all contexts
+- **Performance**: Maximum 3-5 `alwaysApply: true` rules to minimize token usage
+
+#### Mode Files (rca.mdc, design.mdc, plan.mdc, doc.mdc)
+- **Workflow Definition**: Provide step-by-step processes for specific tasks
+- **Context Loading**: Load appropriate behavior files when needed
+- **Task-Specific Guidance**: Offer specialized approaches for each workflow type
+- **Integration**: Work seamlessly with behavior files for comprehensive guidance
+
+#### Behavior Files (behaviors/*.mdc)
+- **Reusable Principles**: Share behavioral guidance across multiple modes
+- **Context-Specific**: Tailor behaviors to specific workflow contexts
+- **Maintainability**: Single source of truth for behavioral patterns
+- **Flexibility**: Can be combined with different mode files as needed
+
+#### Technology Files (tech/*.mdc)
+- **Framework-Specific Patterns**: Provide technology-specific best practices
+- **Integration Guidance**: Help with framework-specific implementation details
+- **Security Practices**: Technology-specific security considerations
+- **Performance Patterns**: Optimized approaches for specific technologies
+
+### Required Workflows
+
+#### Permission and Confirmation Workflow
+1. **Write**: AI presents proposed changes or solutions
+2. **Confirm**: AI asks for explicit user permission
+3. **Implement**: Only proceed after explicit "Yes" confirmation
+4. **Stop Points**: Clear boundaries for AI behavior at each step
+
+#### Problem-Solving Methodology
+- **Root Cause Analysis**: Systematic approach to finding simple, direct fixes
+- **Design Analysis**: Investigate architectural approaches with multiple options
+- **Implementation Planning**: Break down designs into actionable phases
+- **Documentation**: Generate structured design documents and implementation plans
+
+### Expected Interaction Patterns in Cursor
+- **Direct File Tagging**: Use `@filename.mdc` for specific workflow activation
+- **Context Loading**: Load only necessary files to avoid context overload
+- **Consistent Responses**: Same behavior patterns across all similar requests
+- **Performance Optimization**: Minimize token usage through selective loading
+
+## Technical Requirements
+
+### File Naming Conventions
+- **Mode Files**: Use descriptive workflow names (e.g., `rca.mdc`, `design.mdc`, `plan.mdc`)
+- **Behavior Files**: Use context-specific names (e.g., `troubleshooting.mdc`, `designing.mdc`)
+- **Technology Files**: Use technology names (e.g., `django.mdc`, `react.mdc`)
+- **Universal Rules**: Always named `rules.mdc`
+- **Project Context**: Always named `project.mdc`
+
+### Cursor Compatibility Requirements
+- **File Format**: All files must use `.mdc` extension
+- **Frontmatter**: YAML frontmatter required for metadata
+- **Direct Tagging**: Support `@filename.mdc` syntax for file loading
+- **Context Loading**: Must work with Cursor's context window limitations
+- **Performance**: Optimized for Cursor's token processing capabilities
+
+### Expected Line Limits and Rule Structure
+- **File Size**: Maximum 100 lines per file (ideally 50-80 lines)
+- **Universal Rules**: Maximum 3-5 `alwaysApply: true` rules across entire framework
+- **Context Loading**: Maximum 1-2 files per prompt to avoid context overload
+- **Rule Structure**: Clear, actionable instructions with examples
+- **Metadata Fields**: `description`, `applyWhen`, `alwaysApply` in frontmatter
+
+### Framework Structure
+```
+cursor-rules-framework/
+├── rules.mdc                    # Universal rules only (3-5 alwaysApply max)
+├── project.mdc                  # Project-specific context
+├── behaviors/
+│   ├── troubleshooting.mdc      # Troubleshooting behaviors
+│   ├── designing.mdc            # Design behaviors
+│   ├── planning.mdc             # Planning behaviors
+│   └── documenting.mdc          # Documentation behaviors
+├── modes/
+│   ├── rca.mdc                  # RCA workflow
+│   ├── design.mdc               # Design workflow
+│   ├── plan.mdc                 # Planning workflow
+│   └── doc.mdc                  # Documentation workflow
+└── tech/
+    └── django.mdc               # Technology-specific rules
+```
+
+## Design Decisions and Trade-offs
+
+### Decision 1: Modular, Context-Specific Organization
+**Decision**: Organize rules into context-specific files (rca.mdc, design.mdc, plan.mdc, doc.mdc) rather than centralized behavior libraries.
+
+**Reasoning**:
+- **Research Evidence**: Analysis of 50+ cursor rules implementations shows this is the most common and effective approach
+- **Context Variation**: Behaviors vary by context (simplicity first: high priority for RCA, balanced for design)
+- **Maintenance**: Easier to update context-specific behaviors without affecting other contexts
+- **Team Adoption**: Clearer mental model for developers
+
+**Trade-offs**:
+- **Pros**: Clear context separation, easier maintenance, better performance
+- **Cons**: Some duplication of common behaviors across files
+
+### Decision 2: Universal Rules Limit (3-5 maximum)
+**Decision**: Limit `alwaysApply: true` rules to 3-5 maximum across entire framework.
+
+**Reasoning**:
+- **Performance**: Each `alwaysApply: true` rule consumes tokens on every request
+- **Rule Conflicts**: Too many universal rules create contradictory instructions
+- **Context Dilution**: Important rules get lost among many others
+- **Research Evidence**: 50+ repository analysis supports this limit
+
+**Trade-offs**:
+- **Pros**: Better performance, fewer conflicts, clearer priorities
+- **Cons**: Some rules may need explicit loading instead of automatic application
+
+### Decision 3: Separation of Behaviors from Workflows
+**Decision**: Separate behaviors (principles) from workflows (processes) into different file types.
+
+**Reasoning**:
+- **Single Responsibility**: Mode files should focus on "how to do" not "what principles to follow"
+- **Reusability**: Behaviors can be shared across multiple modes with different priorities
+- **Maintenance**: Change behavior once, affects all relevant modes
+- **Clarity**: Clear distinction between workflow and behavioral guidance
+
+**Trade-offs**:
+- **Pros**: Better maintainability, clearer separation of concerns, reusable behaviors
+- **Cons**: Slightly more complex file organization
+
+### Decision 4: Direct File Tagging Over Complex Context Loading
+**Decision**: Use `@filename.mdc` instead of complex prompt resolution systems.
+
+**Reasoning**:
+- **Simplicity**: Direct file references eliminate ambiguity
+- **Performance**: No complex context loading sequences
+- **Clarity**: Forces AI to start with specific file (no ambiguity)
+- **Maintainability**: Easier to understand and debug
+
+**Trade-offs**:
+- **Pros**: Simpler, more predictable, better performance
+- **Cons**: Users must remember specific file names
+
+## Lessons Learned
+
+### From Framework Development
+1. **Simplicity Trumps Complexity**: The most effective frameworks are often the simplest ones that work
+2. **Research-Driven Design**: Analysis of 50+ successful implementations provides better guidance than theoretical approaches
+3. **Performance Matters**: Token usage and processing speed significantly impact user experience
+4. **Separation of Concerns**: Clear boundaries between different types of rules improve maintainability
+5. **User Experience**: Direct file tagging is more intuitive than complex context loading systems
+
+### From Implementation Challenges
+1. **Over-Engineering Risk**: It's easy to create complex systems that violate the "simplicity first" principle
+2. **Universal Rules Balance**: Too few universal rules lack consistency, too many create conflicts
+3. **Context Overload**: Loading too many files simultaneously degrades performance
+4. **Maintenance Complexity**: Complex interdependencies make frameworks difficult to maintain
+5. **User Adoption**: Simpler approaches are more likely to be adopted by development teams
+
+### From Testing and Validation
+1. **Incremental Testing**: Test each component individually before integration
+2. **Performance Measurement**: Track response times and token usage consistently
+3. **User Feedback**: Real-world usage provides better validation than theoretical analysis
+4. **Iterative Improvement**: Framework evolution should be based on actual usage patterns
+5. **Documentation Importance**: Clear documentation is crucial for framework adoption
+
+## Known Issues and Gaps
+
+### Current Pain Points
+1. **File Organization**: Some users find the separation between behaviors and workflows confusing
+2. **Naming Conventions**: Inconsistent naming across different file types
+3. **Documentation Gaps**: Limited examples for complex use cases
+4. **Testing Coverage**: Insufficient automated testing for rule interactions
+5. **Migration Path**: No clear migration guide from existing rule systems
+
+### Technical Limitations
+1. **Cursor Context Limits**: Framework must work within Cursor's context window constraints
+2. **File Loading Performance**: Loading multiple files can impact response times
+3. **Rule Conflict Detection**: No automated system to detect conflicting rules
+4. **Version Compatibility**: Framework may not work with all Cursor versions
+5. **Cross-Platform Issues**: Some file naming conventions may not work on all operating systems
+
+### User Experience Issues
+1. **Learning Curve**: New users need time to understand the framework structure
+2. **File Discovery**: Users may not know which files to load for specific tasks
+3. **Error Handling**: Limited guidance when rules fail to load or execute
+4. **Customization**: Difficult to customize framework for specific project needs
+5. **Debugging**: Limited tools for debugging rule interactions and conflicts
+
+## Proposed Roadmap Items
+
+### Short-term (Next 3 months)
+1. **Documentation Improvements**: Add more examples and use cases
+2. **Naming Standardization**: Establish consistent naming conventions across all files
+3. **Testing Framework**: Develop automated testing for rule interactions
+4. **Migration Guide**: Create clear migration path from existing systems
+5. **Performance Optimization**: Optimize file loading and context management
+
+### Medium-term (3-6 months)
+1. **Rule Conflict Detection**: Implement automated conflict detection system
+2. **Customization Tools**: Develop tools for framework customization
+3. **Integration Testing**: Comprehensive testing across different Cursor versions
+4. **User Interface**: Develop GUI for rule management and configuration
+5. **Analytics**: Implement usage analytics to understand framework effectiveness
+
+### Long-term (6+ months)
+1. **Framework Evolution**: Major framework updates based on user feedback
+2. **Community Features**: Enable community sharing of rule sets
+3. **Advanced Features**: Implement advanced rule composition and inheritance
+4. **Cross-Platform Support**: Ensure framework works across all platforms
+5. **Research Integration**: Incorporate latest research findings into framework design
+
+## Success Metrics
+
+### Objective Metrics
+- **File Count**: Maximum 5 files per project
+- **Line Count**: 50-80 lines per file
+- **Context Loading**: Maximum 1-2 files per prompt
+- **Response Time**: Faster AI responses due to reduced complexity
+- **Universal Rules**: Maximum 3-5 `alwaysApply: true` rules total
+- **Token Usage**: Minimized through limited always-applied rules
+- **Rule Conflicts**: Zero conflicts between universal rules
+
+### Subjective Metrics
+- **Clarity**: Rules are easy to understand and follow
+- **Consistency**: AI behavior is predictable and reliable
+- **Maintainability**: Easy to update and modify rules
+- **Effectiveness**: Core requirements are met without over-engineering
+- **User Satisfaction**: Positive feedback from development teams
+- **Adoption Rate**: Number of teams successfully implementing the framework

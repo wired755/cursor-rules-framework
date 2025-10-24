@@ -1,0 +1,73 @@
+---
+description: "Documentation mode for document creation and management"
+applyWhen: ["@doc.mdc"]
+priority: 2
+---
+
+# Documentation Mode
+
+## @doc.mdc + Documentation Mode
+**Objective**: Create and manage documentation
+**Trigger**: When user requests documentation creation or management
+
+## 🚨 CRITICAL RULE 🚨
+- Your first action MUST read and obey all critical rules in `rules.mdc`.
+
+## Context Files
+- `@rules.mdc` - Universal operational rules (always loaded automatically)
+- `@documenting.mdc` - Documenting behaviors (load with: @documenting.mdc)
+- `@project.mdc` - Project-specific context (optional, load with: @project.mdc)
+
+## DOCUMENTATION WORKFLOW
+
+### 1. Load Context
+- Load mode-specific behaviors: `@documenting.mdc`
+- Load project context if needed: `@project.mdc`
+
+### 2. Documentation Analysis
+- **Understand Requirements**: What documentation is needed
+- **Identify Audience**: Who will use this documentation
+- **Determine Format**: What type of documentation (technical, user, process)
+- **Review Existing**: Check for existing related documentation
+
+### 3. Documentation Creation
+- **Structure Content**: Organize information logically
+- **Use Clear Language**: Write for the intended audience
+- **Include Examples**: Provide concrete examples where helpful
+- **Follow Standards**: Apply project documentation standards
+
+### 4. Documentation Review
+- **Check Completeness**: Ensure all required information is included
+- **Verify Accuracy**: Confirm technical details are correct
+- **Test Usability**: Ensure documentation is easy to follow
+- **Update References**: Link to related documentation
+
+## RESPONSE TEMPLATE
+
+### DOCUMENTATION ANALYSIS
+[Analysis of documentation requirements and audience]
+
+### DOCUMENTATION STRUCTURE
+[Proposed structure and organization]
+
+### CONTENT OUTLINE
+[Detailed outline of content sections]
+
+### IMPLEMENTATION APPROACH
+[How to create the documentation]
+
+### DOCUMENTATION VALIDATION
+- [ ] `rules.mdc` was read before any action, and critical rules followed
+- [ ] Requirements clearly understood
+- [ ] Audience identified
+- [ ] Structure is logical
+- [ ] Content is complete
+- [ ] Examples included where helpful
+- [ ] Follows project standards
+
+### DOCUMENTATION READY
+🚨 **CRITICAL: I will NOT create documentation until you say "Begin Documentation"** 🚨
+- NO documentation creation without explicit permission
+- NO file modifications without confirmation
+- NO implementation until you approve
+- WAIT for your explicit "Begin Documentation" command

@@ -1,126 +1,198 @@
-# Cursor Rules Structure
+# Cursor Rules Framework
+
+A simplified, focused framework for Cursor AI assistant rules that follows the "Simplicity First" principle.
 
 ## Overview
-This directory contains organized Cursor rules that separate general operational rules from project-specific requirements. The structure is designed to be reusable across different projects.
 
-## Directory Structure
+The Cursor Rules Framework provides a modular, context-specific approach to organizing AI assistant rules. It separates universal rules from context-specific behaviors, optimizing for performance and maintainability while following research-backed patterns from 50+ successful implementations.
+
+## Installation
+
+### Copy Framework Files
+Copy the `/cursor-rules/` directory to your project's `.cursor/` directory:
 
 ```
-.cursor/rules/
-├── general.mdc                    # Core Cursor operational rules
-├── frameworks/                    # Framework-specific rules
-│   └── django.mdc                 # Django best practices
-├── project/                       # Project-specific rules
-│   ├── project.mdc                # MWA project context
-│   ├── architecture.mdc           # MWA architectural patterns
-│   ├── patterns.mdc               # MWA implementation patterns
-│   └── testing.mdc                # MWA-specific testing
-└── prompts/                       # Cursor prompt protocols
-    ├── design.mdc
-    ├── plan.mdc
-    ├── rca.mdc
-    └── simple_fix.mdc
+.cursor/
+├── rules/
+│   ├── rules.mdc              # Universal rules (3-5 alwaysApply max)
+│   ├── project.mdc            # Project-specific context
+│   ├── modes/
+│   │   ├── rca.mdc            # RCA workflow
+│   │   ├── design.mdc         # Design workflow
+│   │   ├── plan.mdc           # Planning workflow
+│   │   └── doc.mdc            # Documentation workflow
+│   ├── behaviors/
+│   │   ├── troubleshooting.mdc  # Troubleshooting behaviors
+│   │   ├── designing.mdc         # Design behaviors
+│   │   ├── planning.mdc          # Planning behaviors
+│   │   └── documenting.mdc       # Documentation behaviors
+│   └── tech/
+│       └── django.mdc         # Technology-specific rules
 ```
 
-## File Descriptions
+### Cursor Setup
+- Ensure Cursor is configured to read `.mdc` files
+- Verify `.cursor/` directory is in your project root
+- Test with `@rules.mdc` to confirm framework is loaded
 
-### General Rules
-- **`general.mdc`**: Core Cursor operational rules that apply to any project
-  - Critical operational rules
-  - Problem-solving guidelines
-  - Common problem patterns
-  - Development rules
-  - Anti-patterns to avoid
-  - Emergency stop checklist
-  - Response templates
+## Quick Start
 
-### Framework Rules
-- **`frameworks/django.mdc`**: Django-specific best practices
-  - Django best practices integration
-  - Error handling
-  - Security & permissions
-  - Performance optimization
-  - Testing integration
-  - Convention over configuration
+### Basic Usage
+```bash
+# Load universal rules
+@rules.mdc
 
-### Project Rules
-- **`project/project.mdc`**: MWA project context and requirements
-  - Project overview
-  - Core technologies & patterns
-  - Session management
-  - Frontend guidelines
-  - File organization
-  - Documentation requirements
-  - Common pitfalls
+# Load specific workflow
+@plan.mdc
 
-- **`project/architecture.mdc`**: MWA architectural patterns
-  - Architecture guidelines
-  - Model conventions
-  - Admin interface rules
-  - Import/export patterns
-  - Architectural decision record
+# Load with behaviors
+@rca.mdc @troubleshooting.mdc
+```
 
-- **`project/patterns.mdc`**: MWA implementation patterns
-  - Specific implementation guidelines
-  - Code examples
-  - MWA-specific anti-patterns
-  - Project-specific pitfalls
+### Expected Workflow
+1. **Write**: Define your requirements
+2. **Analyze**: AI analyzes and explains proposed solution
+3. **Confirm**: AI asks for explicit permission with specific confirmation
+4. **Validate**: AI verifies rule compliance before proceeding
+5. **Implement**: Only after explicit "Yes" confirmation and compliance validation
 
-- **`project/testing.mdc`**: MWA-specific testing requirements
-  - Oracle database testing
-  - Healthcare compliance testing
-  - MWA process flow testing
-  - Performance testing
+### Rule Compliance System
+The framework includes mandatory enforcement mechanisms:
+- **Permission Gates**: Explicit permission required for all file modifications
+- **Compliance Validation**: Pre-action rule compliance verification
+- **Accountability**: Violation tracking and acknowledgment
+- **No Override**: Rules cannot be bypassed by user requests
 
-### Prompt Protocols
-- **`prompts/`**: Cursor prompt protocols for specific workflows
-  - Design protocol
-  - Plan protocol
-  - Root cause analysis
-  - Simple fix protocol
+## Usage Guide
 
-## Usage
+### Defining Project Context
+Create `project.mdc` with your project-specific information:
+```mdc
+---
+description: "Project-specific context and patterns"
+---
+# Project Context
+- Technology stack: Django + Oracle + Terraform
+- Architecture patterns: MVC, Repository pattern
+- Coding standards: PEP 8, Django conventions
+```
 
-### For This Project (MWA)
-All rules are automatically loaded by Cursor. The structure provides:
-- General operational guidance
-- Django-specific best practices
-- MWA-specific requirements and patterns
+### Creating New Rules
 
-### For Other Projects
-To reuse this structure for another project:
-1. Copy the directory structure
-2. Update `project/` files with project-specific content
-3. Keep `general.mdc` and `frameworks/` unchanged
-4. Update prompt protocols as needed
+#### Mode Rules (Workflows)
+Create in `/modes/` directory:
+```mdc
+---
+description: "Your custom workflow"
+applyWhen: ["@your-mode.mdc"]
+---
+# Your Mode Workflow
+## Workflow Steps
+1. Step 1
+2. Step 2
+3. Step 3
+```
 
-## Benefits
+#### Behavior Rules (Principles)
+Create in `/behaviors/` directory:
+```mdc
+---
+description: "Your custom behaviors"
+applyWhen: ["@your-behaviors.mdc"]
+---
+# Your Behaviors
+## Principles
+- Principle 1
+- Principle 2
+```
 
-### 1. Clear Separation
-- **General Rules**: Apply to any Cursor usage
-- **Framework Rules**: Apply to specific frameworks
-- **Project Rules**: Apply only to the current project
+#### Tech Rules (Technology-Specific)
+Create in `/tech/` directory:
+```mdc
+---
+description: "Your technology patterns"
+applyWhen: ["@your-tech.mdc"]
+---
+# Your Technology Rules
+## Patterns
+- Pattern 1
+- Pattern 2
+```
 
-### 2. Reusability
-- Structure can be used for any project type
-- Easy to migrate to new projects
-- Consistent organization across projects
+### Rule Authoring Checklist
+- [ ] Single responsibility per file
+- [ ] Clear description in frontmatter
+- [ ] Appropriate `applyWhen` or `alwaysApply` settings
+- [ ] No more than 3-5 `alwaysApply: true` rules total
+- [ ] Context-specific behaviors in `/behaviors/`
+- [ ] Workflows in `/modes/`
+- [ ] Tech-specific rules in `/tech/`
+- [ ] Reference core rules instead of duplicating them
+- [ ] Include enforcement mechanisms for critical rules
+- [ ] Ensure accountability measures are in place
 
-### 3. Maintainability
-- Clear boundaries between rule types
-- Easy to update specific rule categories
-- Modular organization for better management
+### Enforcement Architecture
+The framework follows a single source of truth approach:
+- **Core Rules**: All enforcement mechanisms in `rules.mdc`
+- **Mode Files**: Reference core rules, don't duplicate them
+- **Behavior Files**: Reference core rules, don't duplicate them
+- **No Duplication**: Maintain consistency across all files
+- **Centralized Control**: One place to update enforcement logic
 
-### 4. Scalability
-- Easy to add new frameworks
-- Simple to add new project-specific rules
-- Clear structure for team collaboration
+### Naming Conventions
+- **Files**: Use kebab-case (e.g., `user-profile.mdc`)
+- **Modes**: Descriptive workflow names (e.g., `rca.mdc`, `design.mdc`)
+- **Behaviors**: Context-specific names (e.g., `rca-behaviors.mdc`)
+- **Tech**: Technology names (e.g., `django.mdc`, `react.mdc`)
 
-## Migration from .cursorrules
+## Best Practices
 
-This structure replaces the monolithic `.cursorrules` file with:
-- Better organization
-- Clear separation of concerns
-- Enhanced functionality with .mdc format
-- Improved maintainability
-- Reusable structure for other projects
+### For Using the Framework
+- Start with `@rules.mdc` for universal rules
+- Use specific mode files for workflows
+- Reference behavior files when needed
+- Keep project context in `project.mdc`
+
+### For Writing Rules
+- Follow the "Simplicity First" principle
+- Write clear, actionable instructions
+- Provide examples and anti-examples
+- Test each rule individually
+- Keep files under 100 lines
+
+## Troubleshooting
+
+### Common Issues
+
+#### Rules Not Triggering
+- Check file location in correct directory
+- Verify frontmatter syntax
+- Ensure `applyWhen` conditions are met
+- Test with `@filename.mdc` directly
+
+#### Performance Issues
+- Limit `alwaysApply: true` rules to 3-5 maximum
+- Use context-specific rules instead of universal ones
+- Check for rule conflicts
+
+#### Validation
+```bash
+# Test universal rules
+@rules.mdc
+
+# Test specific mode
+@plan.mdc
+
+# Test with behaviors
+@rca.mdc @troubleshooting.mdc
+```
+
+## Contributing
+
+For framework design decisions and implementation details, see `framework_design.mdc`.
+
+To propose new rule types or workflows:
+1. Create issue with use case
+2. Provide example implementation
+3. Reference framework design principles
+4. Include performance impact analysis
