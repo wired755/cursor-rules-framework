@@ -1,0 +1,126 @@
+# RULE Prompt Protocol
+
+## 🚨 MANDATORY GATE VERIFICATION 🚨
+
+Before creating or modifying rules:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+- [ ] Rule creation requires explicit "APPROVE"
+
+**ENFORCEMENT**: Cannot create or modify rule files without "APPROVE".
+
+## @RULE <rule_requirement>
+**Trigger**: When user requests creation of new Cursor rules
+**Flags**:
+- `@RULE <rule_requirement>` - Default: Generates thread response with rule analysis
+- `@RULE -D <rule_requirement>` - Rule document and thread response
+- `@RULE -T <rule_requirement>` - Thread response only (no rule document)
+- `@RULE -C <rule_requirement>` - Create rule file directly
+- `@RULE -R <rule_requirement>` - Review and refine existing rule
+
+**Flag Usage Examples**:
+- `@RULE "React component naming conventions"` - Create new rule with thread response
+- `@RULE -D "React component naming conventions"` - Generate rule document only
+- `@RULE -T "React component naming conventions"` - Thread response only
+- `@RULE -C "React component naming conventions"` - Create rule file directly
+- `@RULE -R "Update existing React rule"` - Review and refine existing rule
+
+**Auto-load context**:
+- Rule requirement provided
+- Existing project rules in `.cursor/rules/` directory
+- `project/patterns.mdc` - Project-specific rule patterns
+- `project/architecture.mdc` - Project-specific architectural guidelines
+- `project/project.mdc` - Project-specific overview and requirements
+- `project/testing.mdc` - Project-specific testing requirements
+- `templates/rule_template.mdc` - Enhanced rule document template
+- `general.mdc` - Core operational rules and guidelines
+
+**Auto-execute sequence**:
+1. **Load Context**: Read all referenced context files
+2. **Analyze Requirement**: Review rule requirement in detail
+3. **Review Existing Rules**: Check for similar existing rules to avoid duplication
+4. **Check Patterns**: Reference patterns.md for common rule structures
+5. **Identify Scope**: Determine file types, globs, and application scope
+6. **Define Metadata**: Create description, globs, and alwaysApply settings
+7. **Generate Rule Content**: Create specific, actionable guidelines
+8. **Add Examples**: Include concrete examples and code snippets
+9. **Generate Name**: Create unique rule name "RULE-[category]-[description]-[timestamp]"
+10. **Respond to Thread**: Respond using Response Template
+11. **Create or Update Rule File**: 
+    - **Condition**: Only execute when `@RULE -C` flag is provided
+    - **Action**: Generate or update structured rule file using `templates/rule_template.mdc`
+    - **Skip**: When `-C` flag is not used (e.g., `@RULE <requirement>` or `@RULE -T <requirement>`)
+12. **Validate Rule**: Ensure rule meets all requirements and follows best practices
+13. **STOP**: Wait for explicit "Yes, create this rule" command
+
+**Response Template**:
+```
+### RULE REQUIREMENT ANALYSIS
+[Analysis of rule requirement and scope]
+
+### RULE METADATA
+- **Description**: [Brief description of rule purpose]
+- **Applicable Files**: [File types and glob patterns]
+- **Always Apply**: [true/false with justification]
+
+### RULE CONTENT
+[Specific, actionable guidelines and instructions]
+
+### EXAMPLES
+[Concrete examples and code snippets]
+
+### VALIDATION CHECKLIST
+- [ ] Analyzed rule requirement in detail
+- [ ] Reviewed existing rules for duplication
+- [ ] Referenced common rule patterns
+- [ ] Defined appropriate scope and metadata
+- [ ] Created specific, actionable guidelines
+- [ ] Included concrete examples
+- [ ] Generated unique rule name
+- [ ] Applied rule template structure (when -C flag used)
+- [ ] Validated against best practices
+
+### RULE CREATION READY
+
+**PERMISSION STATE**: REQUESTED
+
+**I will NOT create the rule file until you type "APPROVE"**
+
+To proceed with rule creation, you must type exactly: **"APPROVE"**
+
+- **FILE CREATION**: Requires explicit "APPROVE" command
+- **STANDARD PHRASE**: Only "APPROVE" is accepted (not "yes", "create", etc.)
+- NO rule file creation without "APPROVE"
+- NO file modifications without "APPROVE"
+- WAIT for explicit "APPROVE" command
+```
+
+**Validation Checklist**:
+- [ ] Loaded all context files
+- [ ] Analyzed rule requirement in detail
+- [ ] Reviewed existing rules for duplication
+- [ ] Referenced patterns for common rule structures
+- [ ] Identified appropriate scope and file types
+- [ ] Defined clear metadata (description, globs, alwaysApply)
+- [ ] Created specific, actionable guidelines
+- [ ] Added concrete examples and code snippets
+- [ ] Generated unique rule name with timestamp
+- [ ] Applied rule template structure (when -C flag used)
+- [ ] Validated against best practices
+- [ ] **STOP** - Wait for explicit permission
+
+**Always Apply**:
+- Start with specific, concrete guidelines
+- Avoid vague or ambiguous instructions
+- Include concrete examples and code snippets
+- Follow project-specific patterns from `project/patterns.mdc`
+- Ensure rules are maintainable and testable
+- Consider file scope and application context
+- Reference project-specific architecture from `project/architecture.mdc`
+- Apply project-specific requirements from `project/project.mdc`
+- Maintain consistency with existing rules
+- Focus on actionable, measurable outcomes
+- Test rules before finalizing

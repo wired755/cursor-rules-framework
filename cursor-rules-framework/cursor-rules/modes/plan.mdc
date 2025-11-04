@@ -1,0 +1,101 @@
+---
+description: "Plan mode for structured implementation planning"
+applyWhen: ["@plan.mdc"]
+priority: 2
+---
+
+# Plan Mode
+
+## @plan.mdc + Plan Mode
+**Objective**: Create structured implementation plans
+**Trigger**: When user requests planning or analysis
+
+## 🚨 MANDATORY GATE VERIFICATION 🚨
+
+Before proceeding with planning workflow:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+- [ ] Plan Mode Active: NO code changes allowed in this mode
+
+**ENFORCEMENT**: Plan mode is READ-ONLY - no code changes under any circumstances.
+
+## Context Files
+- `@rules.mdc` - Universal operational rules (always loaded automatically)
+- `@planning.mdc` - Planning behaviors (load with: @planning.mdc)
+- `@project.mdc` - Project-specific context (optional, load with: @project.mdc)
+
+## PLAN WORKFLOW
+
+### 1. Load Context
+- Load mode-specific behaviors: `@planning.mdc`
+- Load project context if needed: `@project.mdc`
+
+### 2. Analysis Phase
+- **Review Requirements**: Understand what needs to be accomplished
+- **Identify Constraints**: Technical, time, resource limitations
+- **Break Down Tasks**: Divide into manageable phases
+- **Estimate Effort**: Realistic time and complexity estimates
+
+**GATE CHECKPOINT 1**: Analysis complete - Continue to planning phase (no permission required for analysis).
+
+### 3. Planning Phase
+- **Create Phases**: Logical sequence of implementation steps
+- **Define Dependencies**: What must be completed before each phase
+- **Set Milestones**: Clear deliverables for each phase
+- **Identify Risks**: Potential issues and mitigation strategies
+
+**GATE CHECKPOINT 2**: Planning complete - Continue to documentation (no permission required for planning).
+
+### 4. Documentation Phase
+- **Structure Plan**: Clear, actionable steps
+- **Include Examples**: Concrete implementation details
+- **Add Validation**: How to verify each phase completion
+- **Create Timeline**: Realistic schedule with buffer time
+
+**GATE CHECKPOINT 3**: Plan complete - PERMISSION REQUIRED if user wants to proceed to implementation.
+**Permission State**: Transition to REQUESTED if presenting for approval.
+
+## RESPONSE TEMPLATE
+
+### PLAN ANALYSIS
+[Analysis of requirements and constraints]
+
+### IMPLEMENTATION PLAN
+[Structured plan with phases and steps]
+
+### PHASE BREAKDOWN
+**Phase 1: [Name]**
+- Objectives: [What this phase accomplishes]
+- Tasks: [Specific actionable items]
+- Dependencies: [What must be completed first]
+- Timeline: [Estimated duration]
+
+**Phase 2: [Name]**
+- Objectives: [What this phase accomplishes]
+- Tasks: [Specific actionable items]
+- Dependencies: [What must be completed first]
+- Timeline: [Estimated duration]
+
+### RISK ASSESSMENT
+[Potential risks and mitigation strategies]
+
+### SUCCESS CRITERIA
+[How success will be measured]
+
+### PLAN APPROVAL REQUIRED
+
+**PERMISSION STATE**: REQUESTED
+
+🚨 **CRITICAL: I will NOT proceed until you type "APPROVE"** 🚨
+
+To proceed with this plan, you must type exactly: **"APPROVE"**
+
+- **PLAN MODE ENFORCEMENT**: NO code changes in plan mode
+- **IMPLEMENTATION SEPARATE**: Approval only confirms plan, implementation requires separate permission
+- **STANDARD PHRASE**: Only "APPROVE" is accepted
+- NO code changes without explicit "APPROVE" in implementation mode
+- NO file modifications without "APPROVE"
+- WAIT for your explicit "APPROVE" command

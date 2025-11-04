@@ -1,0 +1,93 @@
+---
+description: "Planning behaviors for structured implementation planning"
+applyWhen: ["@planning.mdc"]
+priority: 2
+---
+
+# Plan Behaviors
+
+## Context-Specific Behaviors for Planning and Implementation
+
+### 1. Simplicity First (Planning-Specific)
+- **Start with the most basic implementation**: Begin with core functionality
+- **Add complexity incrementally**: Build features in logical order
+- **Question if each feature is actually needed**: Focus on essential requirements first
+- **Plan for iteration**: Design for incremental delivery
+- **Avoid over-planning**: Don't plan too far ahead
+
+### 2. Incremental Approach (Planning-Specific)
+- **Build in small, testable increments**: Each phase should be independently verifiable
+- **Avoid big-bang implementations**: Break work into manageable chunks
+- **Plan for parallel work**: Identify tasks that can be done simultaneously
+- **Set clear milestones**: Define deliverables for each phase
+- **Plan for feedback**: Include review and adjustment points
+
+### 3. Realistic Estimation (Planning-Specific)
+- **Include buffer time**: Account for unexpected issues and learning curve
+- **Consider dependencies**: Factor in waiting time for external resources
+- **Account for testing**: Include time for testing and debugging
+- **Plan for iteration**: Allow time for refinement and improvement
+- **Be conservative**: Under-promise and over-deliver
+
+### 4. Risk Management (Planning-Specific)
+- **Identify potential risks**: What could go wrong?
+- **Plan mitigation strategies**: How to handle problems when they arise
+- **Consider dependencies**: What external factors could affect the plan?
+- **Plan for contingencies**: Alternative approaches if primary plan fails
+- **Document assumptions**: Record what the plan depends on
+
+### 5. Clear Dependencies (Planning-Specific)
+- **Identify prerequisites**: What must be completed before each phase
+- **Avoid circular dependencies**: Ensure logical sequence
+- **Plan for parallel work**: Identify tasks that can be done simultaneously
+- **Consider external dependencies**: Third-party services, team availability
+- **Plan for handoffs**: Clear transition points between phases
+
+## Planning Anti-Patterns to Avoid
+
+### Over-Planning (Planning-Specific)
+- Planning too far ahead without feedback
+- Creating overly detailed plans that become obsolete
+- Not allowing for flexibility and change
+- Planning for hypothetical scenarios
+
+### Under-Planning (Planning-Specific)
+- Not identifying dependencies
+- Not considering risks
+- Unrealistic time estimates
+- Not planning for testing and validation
+
+## Planning Principles
+
+### 1. Analysis Phase
+- **Review Requirements**: Understand what needs to be accomplished
+- **Identify Constraints**: Technical, time, resource limitations
+- **Break Down Tasks**: Divide into manageable phases
+- **Estimate Effort**: Realistic time and complexity estimates
+
+### 2. Planning Phase
+- **Create Phases**: Logical sequence of implementation steps
+- **Define Dependencies**: What must be completed before each phase
+- **Set Milestones**: Clear deliverables for each phase
+- **Identify Risks**: Potential issues and mitigation strategies
+
+### 3. Documentation Phase
+- **Structure Plan**: Clear, actionable steps
+- **Include Examples**: Concrete implementation details
+- **Add Validation**: How to verify each phase completion
+- **Create Timeline**: Realistic schedule with buffer time
+
+### 4. Validation and Review
+- **Check Completeness**: Ensure all requirements are covered
+- **Verify Dependencies**: Confirm logical sequence
+- **Review Risks**: Identify potential problems
+- **Get Feedback**: Validate plan with stakeholders
+
+## Planning When in Doubt
+1. **Start with the simplest plan** that meets requirements
+2. **Break work into small chunks** for easier management
+3. **Plan for iteration** and feedback
+4. **Identify risks early** and plan mitigation
+5. **Be realistic** about time and resources
+6. **Ask for clarification** on unclear requirements
+7. **Plan for testing** and validation at each phase

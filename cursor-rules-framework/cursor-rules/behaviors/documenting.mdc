@@ -1,0 +1,103 @@
+---
+description: "Documenting behaviors for document creation and management"
+applyWhen: ["@documenting.mdc"]
+priority: 2
+---
+
+# Documentation Behaviors
+
+## Context-Specific Behaviors for Documentation
+
+### 1. Universal Documentation Standards (Doc-Specific)
+- **Be concise**: Write clearly and to the point without unnecessary words
+- **Obey document section intent**: Only add content relevant to the current section
+- **Eliminate duplication**: Do not repeat information across documents; reference existing content instead
+- **Group related content**: Organize similar content together within sections
+- **Preserve existing details**: When updating documents, maintain existing accurate information unless it's incorrect
+- **Replace only when incorrect**: Only replace details when they are factually wrong or outdated
+- **Remove incorrect information**: Delete any factually incorrect or outdated details
+- **Follow template structure**: Ensure content matches the document template's intended level of detail and organization
+
+### 2. Documentation Update Protocol (Doc-Specific)
+1. **Review existing content**: Check current document for accuracy and completeness
+2. **Identify required changes**: Determine what needs to be added, updated, or removed
+3. **Group related content**: Organize similar information together within appropriate sections
+4. **Verify section relevance**: Ensure all content is appropriate for the document section
+5. **Check for duplication**: Verify no information is repeated across documents
+6. **Apply template structure**: Follow the document template's organization and detail level
+7. **Maintain consistency**: Ensure all changes align with existing document standards
+
+### 3. Clear Communication (Doc-Specific)
+- **Write for the audience**: Use language appropriate for the intended readers
+- **Provide context**: Explain why information is important
+- **Use examples**: Show how to apply the information
+- **Be specific**: Avoid vague or ambiguous language
+- **Structure logically**: Organize information in a logical flow
+
+### 4. Consistency (Doc-Specific)
+- **Follow templates**: Use established document templates
+- **Maintain style**: Apply consistent formatting and terminology
+- **Cross-reference**: Link related information appropriately
+- **Update regularly**: Keep documentation current and accurate
+- **Version control**: Track changes and maintain history
+
+### 5. Documentation Analysis (Doc-Specific)
+- **Understand Requirements**: What documentation is needed
+- **Identify Audience**: Who will use this documentation
+- **Determine Format**: What type of documentation (technical, user, process)
+- **Review Existing**: Check for existing related documentation
+
+### 6. Documentation Creation (Doc-Specific)
+- **Structure Content**: Organize information logically
+- **Use Clear Language**: Write for the intended audience
+- **Include Examples**: Provide concrete examples where helpful
+- **Follow Standards**: Apply project documentation standards
+
+## Documentation Anti-Patterns to Avoid
+
+### Over-Documentation (Doc-Specific)
+- Documenting obvious or trivial information
+- Creating documentation for documentation's sake
+- Not considering the audience's needs
+- Duplicating information across multiple documents
+
+### Under-Documentation (Doc-Specific)
+- Missing critical information
+- Not explaining complex concepts
+- Assuming knowledge the audience doesn't have
+- Not keeping documentation up to date
+
+## Documentation Principles
+
+### 1. Audience-Focused
+- **Know your audience**: Write for the intended readers
+- **Appropriate level**: Match technical depth to audience needs
+- **Clear purpose**: Each document should have a clear purpose
+- **User-centric**: Focus on what the user needs to know
+
+### 2. Content Quality
+- **Accuracy**: Ensure all information is correct and current
+- **Completeness**: Cover all necessary topics
+- **Clarity**: Use clear, concise language
+- **Examples**: Provide concrete examples where helpful
+
+### 3. Organization
+- **Logical structure**: Organize information in a logical flow
+- **Consistent format**: Use consistent formatting and structure
+- **Easy navigation**: Make it easy to find information
+- **Cross-references**: Link related information appropriately
+
+### 4. Maintenance
+- **Keep current**: Update documentation when things change
+- **Version control**: Track changes and maintain history
+- **Review regularly**: Periodically review and update content
+- **Remove obsolete**: Delete outdated information
+
+## Documentation When in Doubt
+1. **Start with the audience** - who will use this documentation?
+2. **Be clear and concise** - avoid unnecessary complexity
+3. **Use examples** to illustrate concepts
+4. **Follow established patterns** rather than creating new ones
+5. **Ask for clarification** on unclear requirements
+6. **Review existing documentation** for consistency
+7. **Plan for maintenance** - how will this stay current?

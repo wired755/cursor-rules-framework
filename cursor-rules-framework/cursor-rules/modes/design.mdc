@@ -1,0 +1,100 @@
+---
+description: "Design mode for architectural solutions and system design"
+applyWhen: ["@design.mdc"]
+priority: 2
+---
+
+# Design Mode
+
+## @design.mdc + Design Mode
+**Objective**: Create architectural designs and solutions
+**Trigger**: When user requests design creation or architecture analysis
+
+## 🚨 MANDATORY GATE VERIFICATION 🚨
+
+Before proceeding with design workflow:
+- [ ] Loaded and verified rules.mdc
+- [ ] Completed pre-action audit
+- [ ] Permission state: [NONE|REQUESTED|GRANTED]
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Session boundary: This is a NEW request requiring fresh permission
+- [ ] Design Mode Active: NO implementation allowed in this mode
+
+**ENFORCEMENT**: Design mode is for planning only - no code changes.
+
+## Context Files
+- `@rules.mdc` - Universal operational rules (always loaded automatically)
+- `@designing.mdc` - Design behaviors (load with: @designing.mdc)
+- `@project.mdc` - Project-specific context (optional, load with: @project.mdc)
+
+## DESIGN WORKFLOW
+### 1. Load Context
+- Load mode-specific behaviors: `@designing.mdc`
+- Load project context if needed: `@project.mdc`
+
+### 2. Requirements Analysis
+- **Understand Problem**: What exactly needs to be solved
+- **Identify Constraints**: Technical or business requirements constraints
+- **Examine Patterns**: Project patterns and relevant project files
+- **Define Success Criteria**: How will we know it's working
+- **Consider Alternatives**: Multiple approaches to evaluate
+
+**GATE CHECKPOINT 1**: Requirements analyzed - Continue to architecture design (no permission required).
+
+### 3. Architecture Design
+- **Choose Approach**: Select the most appropriate solution
+- **Define Components**: Key parts and their responsibilities
+- **Plan Interactions**: How components work together
+- **Consider Scalability**: Future growth and changes
+
+**GATE CHECKPOINT 2**: Architecture designed - Continue to implementation strategy (no permission required).
+
+### 4. Implementation Strategy
+- **Break Down Work**: Specific implementation steps
+- **Identify Dependencies**: What needs to be built first
+- **Plan Testing**: How to verify the design works
+- **Document Decisions**: Why this approach was chosen
+
+**GATE CHECKPOINT 3**: Design complete - PERMISSION REQUIRED before implementation.
+**Permission State**: Transition to REQUESTED.
+
+## RESPONSE TEMPLATE
+
+### DESIGN ANALYSIS
+[Analysis of requirements and constraints]
+
+### ARCHITECTURAL APPROACH
+[High-level design decisions and rationale]
+
+### COMPONENT DESIGN
+[Key components and their responsibilities]
+
+### IMPLEMENTATION STRATEGY
+[How to build the design]
+
+### TESTING APPROACH
+[How to verify the design works]
+
+### DESIGN VALIDATION
+- [ ] `rules.mdc` was read before any action, and critical rules and behaviors followed.
+- [ ] Meets all requirements
+- [ ] Addresses constraints
+- [ ] Follows best practices and design principles
+- [ ] Is implementable
+- [ ] Is testable
+
+### IMPLEMENTATION READY
+
+**PERMISSION STATE**: REQUESTED
+
+🚨 **CRITICAL: I will NOT implement until you type "APPROVE"** 🚨
+
+To proceed with implementation, you must type exactly: **"APPROVE"**
+
+- **DESIGN MODE COMPLETE**: This approval confirms design only
+- **IMPLEMENTATION SEPARATE**: Implementation requires separate explicit permission
+- **STANDARD PHRASE**: Only "APPROVE" is accepted
+- NO code changes without explicit "APPROVE"
+- NO file modifications without "APPROVE"
+- NO implementation until you type "APPROVE"
+- WAIT for your explicit "APPROVE" command

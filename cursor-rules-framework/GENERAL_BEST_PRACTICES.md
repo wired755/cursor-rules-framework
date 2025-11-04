@@ -32,29 +32,31 @@ This document synthesizes the research and lessons learned from developing the C
 
 ## Framework Architecture
 
-### Current Framework Structure (2024)
+### Current Framework Structure (2025)
 
 The framework has evolved into a sophisticated but maintainable structure:
 
 ```
-cursor-rules/
+cursor-rules/               # Core Cursor rules structure
 ├── 00-rules.mdc                    # Universal rules (alwaysApply: true)
 ├── 01-general.mdc                  # General operational rules
 ├── 10-project.mdc                  # Project-specific context
-├── behaviors/
+├── behaviors/              # Behaviors shared by commands
 │   ├── 30-planning.mdc            # Planning behaviors
 │   ├── 31-troubleshooting.mdc     # Troubleshooting behaviors
 │   ├── 32-designing.mdc           # Design behaviors
 │   └── 33-documenting.mdc         # Documentation behaviors
-├── modes/
-│   ├── 20-rca.mdc                 # Root cause analysis workflow
-│   ├── 21-plan.mdc                # Planning workflow
-│   ├── 22-design.mdc              # Design workflow
-│   ├── 23-rule.mdc                # Rule creation workflow
-│   ├── 24-doc.mdc                 # Documentation workflow
-│   └── review.mdc                 # Review workflow
-└── stack/
-    └── django.mdc                 # Django-specific patterns
+│   └── 34-simple-fix.mdc          # Simple fixes for error messages
+├── commands/               # Folder containing commands directly called by user
+│   ├── rca.mdc                 # Root cause analysis workflow
+│   ├── plan.mdc                # Planning workflow
+│   ├── design.mdc              # Design workflow
+│   ├── rule.mdc                # Rule creation workflow
+│   ├── doc.mdc                 # Documentation workflow
+│   └── review.mdc              # Security, compliance, and performance review workflow
+└── stack/                  # Folder containing patterns for project-specifc tools and environment
+    └── django.mdc              # Django-specific patterns
+    └── ...                     # Patters pertaining 
 ```
 
 ### File Organization Principles
@@ -62,11 +64,11 @@ cursor-rules/
 #### Universal Rules (00-rules.mdc)
 - **Single source of truth**: All enforcement mechanisms in one file
 - **Core operational rules**: Permission gates, compliance validation, session boundaries
-- **Maximum 1 `alwaysApply: true` rule total**
+- **Maximum 1-3 `alwaysApply: true` rule total**
 - **No duplication**: Other files reference, don't duplicate
 - **Enhanced enforcement**: Pre-action audit, permission state tracking, accountability system
 
-#### Mode Files (Workflows)
+#### Command Files (Workflows)
 - **Single responsibility**: One workflow per file
 - **Direct file tagging**: Use `@filename.mdc` syntax
 - **Reference core rules**: Don't duplicate enforcement mechanisms
@@ -80,7 +82,7 @@ cursor-rules/
 - **Flexibility**: Can be combined with different mode files
 - **Gate compliance**: Cannot override permission gates from rules.mdc
 
-#### Technology Files (Framework-Specific)
+#### Stack Files (Framework-Specific)
 - **Framework-specific patterns**: Technology-specific best practices
 - **Integration guidance**: Help with framework-specific implementation
 - **Security practices**: Technology-specific security considerations
@@ -90,16 +92,15 @@ cursor-rules/
 
 #### Files
 - **Mode files**: Descriptive workflow names (`rca.mdc`, `design.mdc`, `plan.mdc`)
-- **Behavior files**: Context-specific names (`troubleshooting.mdc`, `planning.mdc`)
+- **Behavior files**: Context-specific names prefixed with priority order (`troubleshooting.mdc`, `planning.mdc`)
 - **Technology files**: Technology names (`django.mdc`, `react.mdc`)
 - **Universal rules**: Always named `rules.mdc`
 - **Project context**: Always named `project.mdc`
 
 #### Directories
-- **Modes**: `/modes/` for workflow files
+- **Commands**: `/commands/` for workflow files
 - **Behaviors**: `/behaviors/` for behavioral principles
-- **Technology**: `/tech/` or `/stack/` for framework-specific rules
-- **Project**: `/project/` for project-specific context
+- **Technology**: `/stack/` for framework-specific rules
 
 ## Rule Design Patterns
 

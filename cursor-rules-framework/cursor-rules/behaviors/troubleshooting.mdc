@@ -22,8 +22,6 @@ priority: 2
 
 ## Context-Specific Behaviors for Root Cause Analysis
 
--- Fix the root cause, not the symptom. 
-
 ### 1. Simplicity First (High Priority)
 - **Start with the simplest possible solution**: Always begin with the most direct fix
 - **Question complexity**: Ask "Is this architectural change actually needed?"

@@ -1,0 +1,85 @@
+---
+description: "General operational rules and problem-solving guidelines"
+alwaysApply: true
+priority: 1
+---
+
+# General Cursor Rules
+
+
+### 4. Code Review Checklist
+- [ ] Did I start with the simplest solution?
+- [ ] Am I adding complexity that isn't needed?
+- [ ] Could this be solved with a few lines instead of new functions?
+- [ ] Am I following patterns just for the sake of following patterns?
+
+## COMMON PROBLEM PATTERNS
+
+### Data Format Issues
+- **Symptoms**: Validation errors, "not one of the available choices"
+- **Root Cause**: Data sent in wrong format (comma-separated vs individual values)
+- **Solution**: Simple data formatting change (2-3 lines)
+- **Example**: `fields: selectedFields.join(',')` → proper individual field values
+
+### UI Issues
+- **Symptoms**: Missing data, incorrect display
+- **Root Cause**: Template context issues, not backend problems
+- **Solution**: Check templates first, add context if needed
+- **Example**: Missing template variables vs backend logic issues
+
+### Validation Errors
+- **Symptoms**: Form validation failures
+- **Root Cause**: Usually data format or field mapping
+- **Solution**: Check data format before modifying validation logic
+- **Example**: Field choices mismatch vs validation rule problems
+
+
+### 3. Template Debugging Protocol
+- **Template inspection**: Always check what data is available in template context
+- **Context verification**: Verify template variables exist before proposing backend changes
+- **Simple solutions first**: Try context additions before complex backend modifications
+
+
+## PRE-SOLUTION VALIDATION QUESTIONS
+Before ANY code changes, ask yourself:
+- [ ] Did I start with the simplest solution?
+- [ ] Am I adding complexity that isn't needed?
+- [ ] Could this be solved with a few lines instead of new functions?
+- [ ] Am I following patterns just for the sake of following patterns?
+- [ ] **CRITICAL: Did I ask for permission before making changes?**
+
+## EMERGENCY STOP CHECKLIST
+If you're about to make code changes:
+- [ ] User explicitly said "Yes, implement this"
+- [ ] I explained the solution first
+- [ ] I waited for confirmation
+- [ ] I'm not over-engineering
+
+## MANDATORY RESPONSE TEMPLATE
+When user requests changes:
+
+### ANALYSIS
+[Root cause analysis here]
+
+### PROPOSED SOLUTION
+[Step-by-step solution here]
+
+### IMPLEMENTATION PLAN
+1. [Specific change 1]
+2. [Specific change 2]
+3. [Specific change 3]
+
+### CONFIRMATION REQUIRED
+**I will NOT make any changes until you explicitly type "APPROVE".**
+
+To proceed, you must type exactly: **"APPROVE"** (not "yes", "ok", or other phrases)
+
+Do you want me to proceed with this implementation?
+
+## IF YOU VIOLATED THE RULES
+If you made changes without permission:
+1. IMMEDIATELY stop and apologize
+2. Explain what you should have done instead
+3. Ask if user wants you to revert the changes
+4. Commit to following the protocol going forward
+

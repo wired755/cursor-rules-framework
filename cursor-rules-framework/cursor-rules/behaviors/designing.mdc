@@ -1,0 +1,94 @@
+---
+description: "Designing behaviors for architectural solutions and system design"
+applyWhen: ["@designing.mdc"]
+priority: 2
+---
+
+# Design Behaviors
+
+## Context-Specific Behaviors for Design and Architecture
+
+### 1. Simplicity First (Balanced Priority)
+- **Start with the simplest solution that works**: Balance simplicity with maintainability
+- **Add complexity only when necessary**: Don't over-engineer, but don't under-engineer
+- **Question if each feature is actually needed**: YAGNI principle with design considerations
+- **Consider scalability**: Simple solutions that can grow appropriately
+- **Balance trade-offs**: Simplicity vs. maintainability vs. scalability
+
+### 2. Clear Separation of Concerns (Design-Specific)
+- **Single Responsibility**: Each component has a single, well-defined purpose
+- **Minimize Coupling**: Reduce dependencies between components
+- **Maximize Cohesion**: Keep related functionality together
+- **Interface Design**: Clear contracts between components
+- **Layered Architecture**: Appropriate separation of concerns
+
+### 3. Testability (Design-Specific)
+- **Design for Testing**: Components should be independently testable
+- **Mockable Dependencies**: External dependencies should be easily mockable
+- **Clear Interfaces**: Well-defined contracts make testing easier
+- **Isolated Components**: Components should be testable in isolation
+- **Test-Driven Design**: Consider how to verify the design works
+
+### 4. Maintainability (Design-Specific)
+- **Easy to Understand**: Code should be self-documenting
+- **Easy to Modify**: Changes should be localized and predictable
+- **Follow Patterns**: Use established architectural patterns
+- **Document Decisions**: Record important design decisions and trade-offs
+- **Consistent Structure**: Follow project conventions and standards
+
+### 5. Scalability Considerations (Design-Specific)
+- **Future Growth**: Design for expected growth patterns
+- **Performance Implications**: Consider performance impact of design decisions
+- **Resource Management**: Plan for resource usage and constraints
+- **Extensibility**: Design for future feature additions
+- **Technology Evolution**: Consider how technology changes might affect the design
+
+## Design Anti-Patterns to Avoid
+
+### Over-Engineering (Design-Specific)
+- Creating unnecessary abstraction layers
+- Building for hypothetical future requirements
+- Following patterns without understanding the problem
+- Adding complexity without clear benefit
+
+### Under-Engineering (Design-Specific)
+- Ignoring scalability requirements
+- Not considering maintainability
+- Skipping important architectural decisions
+- Not planning for testing
+
+## Design Principles
+
+### 1. Requirements-Driven Design
+- **Understand the Problem**: What exactly needs to be solved
+- **Identify Constraints**: Technical and business constraints
+- **Define Success Criteria**: How will we know it's working
+- **Consider Alternatives**: Evaluate multiple approaches
+
+### 2. Component Design
+- **Define Components**: Key parts and their responsibilities
+- **Plan Interactions**: How components work together
+- **Consider Dependencies**: What needs to be built first
+- **Document Interfaces**: Clear contracts between components
+
+### 3. Implementation Strategy
+- **Break Down Work**: Specific implementation steps
+- **Identify Dependencies**: What needs to be built first
+- **Plan Testing**: How to verify the design works
+- **Document Decisions**: Why this approach was chosen
+
+### 4. Quality Attributes
+- **Performance**: Response time, throughput, resource usage
+- **Reliability**: Fault tolerance, error handling
+- **Security**: Authentication, authorization, data protection
+- **Usability**: User experience, accessibility
+- **Maintainability**: Code quality, documentation, testing
+
+## Design When in Doubt
+1. **Start with the simplest solution** that meets requirements
+2. **Consider future growth** but don't over-engineer
+3. **Follow established patterns** rather than creating new ones
+4. **Document decisions** and trade-offs
+5. **Plan for testing** from the beginning
+6. **Ask for clarification** on unclear requirements
+7. **Validate assumptions** before committing to design decisions

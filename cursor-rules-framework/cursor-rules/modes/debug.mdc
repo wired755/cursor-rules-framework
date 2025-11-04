@@ -1,0 +1,110 @@
+---
+description: "Workflow for debugging implementation issues"
+alwaysApply: false
+---
+# Debugging Mode
+
+## DEBUG PROTOCOL
+### 0. 🚨**MANDATORY GATE VERIFICATION**🚨: You cannot proceed until this verification is complete.
+- [ ] Loaded and verified `@00-rules.mdc`
+- [ ] Understanding: Only "APPROVE" is valid confirmation
+- [ ] Response boundary: Each response is a NEW request requiring fresh permission
+**ENFORCEMENT**: Cannot proceed with workflow until this verification is complete.
+
+### 1. **UNDERSTAND**: Understand the problem through error messages, logs, reproduction steps, frequency, and environment (local, dev, staging, production)
+- Debugging Behaviors: `@31-debugging.mdc`
+
+### 2. **BASELINE**: Verify the expected behavior
+
+### 3. **CLASSIFY**: Understand if problem is Environment, Configuration, Code Logic, Data/Schema, UI, Network, or other
+
+### 4. **CONTEXTUALIZE**: Gather contextual information from understanding, baseline, and classification.
+- Project Context (if needed optional): `@project.mdc`
+- Project Stack Context (if needed): `\stack\`
+- Read project files.
+- Read previous issues log
+- Question user
+- Identify recent changes
+
+### 5. **DIAGNOSE**: Form hypothesis; higher-complexity issues have more hypothesis Identify problem root cause(s).
+
+### 6. **GATE CHECKPOINT 1**: Diagnostics complete. Respond to user. **ENFORCEMENT**: Explicit permission required from user for any verification steps.
+
+#### MANDATORY DIAGNOSTICS RESPONSE STRUCTURE
+You must complete all sections.
+
+##### EXPECTED BEHAVIOR (mandatory)
+[Brief description of expected behavior]
+
+##### ERROR SUMMARY (mandatory)
+[Brief description of error and context]
+
+##### HYPOTHESIS (mandatory)
+[Brief descriptions of hypotheses]
+
+##### VERIFICATION STEPS (mandatory)
+[Brief descriptions of steps proposed to verify hypothesis]
+
+##### DEBUG STEPS VALIDATION CHECKLIST  (mandatory)
+- [ ] Read debugging `@31-debugging.mdc`
+- [ ] Understood the error.
+- [ ] Understood baseline behavior.
+- [ ] Classified the problem.
+- [ ] Contextualized and diagnosed the problem
+- [ ] **RESPONSE BOUNDARY**: Verified this is a new request requiring fresh permission
+- [ ] **NO CARRYOVER**: Did not assume permission from previous requests
+
+🚨 **CRITICAL: I will NOT make changes until you type "APPROVE"** 🚨
+
+To proceed with implementation, you must type exactly: **"APPROVE"**
+
+### 7. **VERIFY**: Perform methodical steps to confirm/refute direct evidence.
+
+### 8. **ROOT CAUSE**: Identify true root cause, tracing chain back to single event causing the issue.
+
+### 9. **IDENTIFY FIX**: Propose simple fix for root cause.
+- Context: `@34-fix.mdc`
+
+### 10. **ASSESS IMPACT**: Assess impact of fix, and identify 
+
+### 11. **GATE CHECKPOINT 2**: Root cause and fix identified. Respond to user. **ENFORCEMENT**: Explicit permission required from user to proceed.
+
+#### MANDATORY ROOT CAUSE RESPONSE STRUCTURE
+You must complete all sections.
+
+##### ROOT CAUSE (mandatory)
+[Brief root cause description]
+
+##### ROOT CAUSE ANALYSIS (mandatory)
+[Detailed analysis of the underlying cause, including why its a root cause and not a symptom]
+
+##### VERIFICATION (mandatory)
+[Description of the verification steps]
+
+##### PROPOSED FIX (mandatory)
+[Simple, direct solution with implementation steps, including file-by-file changes with code examples]
+
+##### IMPACT ANALYSIS (mandatory)
+[Description of impact of change, including side effects and similar unresolved issues in solution.]
+
+##### DEBUG STEPS VALIDATION CHECKLIST (mandatory)
+- [ ] Verified the problem
+- [ ] Identified root cause
+- [ ] Read `@34-fix.mdc` and identified the fix
+- [ ] Assessed impact of change
+- [ ] Identified similar problems in code
+- [ ] **RESPONSE BOUNDARY**: Verified this is a new request requiring fresh permission
+- [ ] **NO CARRYOVER**: Did not assume permission from previous requests
+
+🚨 **CRITICAL: I will NOT make changes until you type "APPROVE"** 🚨
+
+### 12. **IMPLEMENT FIX**: Implement fix above
+
+#### MANDATORY FIX RESPONSE STRUCTURE
+You must complete all sections.
+
+##### FIX CONFIRMATION (mandatory)
+[Brief description of steps implemented]
+
+##### VALIDATION CHECKLIST (mandatory)
+- [ ] Implemented all parts of fix

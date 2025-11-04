@@ -1,0 +1,38 @@
+---
+description: "Project-specific guidelines and patterns"
+applyWhen: ["@project.mdc"]
+priority: 2
+---
+
+# Project Context
+
+## PROJECT OVERVIEW
+This file contains project-specific guidelines and patterns for the Cursor Rules Framework.
+
+## PROJECT-SPECIFIC PATTERNS
+- **Framework Integration**: Django, Oracle DB, React, Terraform, Ruby, RDS, EC2
+- **Session Management**: Process status tracking, state transitions, error handling
+- **Compliance Requirements**: HIPAA compliance, PII protection, audit trails
+
+## PROJECT CONTEXT
+- **Technology Stack**: Django backend with Oracle database
+- **Frontend**: Javascript components with modern UI patterns
+- **Data Management**: Oracle database with specific schema requirements
+- **Deployment**: Isolated EC2 instances (dev, stage, prod) using GitHub Actions and SSH deploy keys. All deployments are push-triggered and environment-scoped.
+- **Stack**: Each instance runs Ubuntu 24.04 with Gunicorn and NGINX, using systemd for process management. Static assets served by NGINX.
+- **Secrets & Transit Encryption**: Secrets and environment-specific config are pulled from AWS Secrets Manager. HTTPS enforced using SSL.
+- **Development**: Localhost and https://comp-dev.mwahq.com on Dev Oracle db
+- **Stage**: https://comp-stage.mwahq.com on Stage Oracle db
+- **Production**: Not yet deployed.
+
+## PROJECT-SPECIFIC GUIDELINES
+- **Security**: HIPAA compliance requirements
+- **Data Handling**: PII protection and audit trail requirements
+- **Session Management**: Process status tracking and state transitions
+- **Error Handling**: Healthcare-specific error handling patterns
+
+## COMMON PROJECT PATTERNS
+- **Data Flow**: Context → Template → Display patterns
+- **Validation**: Form validation with healthcare compliance
+- **Testing**: Healthcare-specific testing requirements
+- **Documentation**: Compliance documentation standards

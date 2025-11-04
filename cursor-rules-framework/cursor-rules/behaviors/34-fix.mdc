@@ -1,0 +1,28 @@
+---
+description: Performing simple fixes
+alwaysApply: false
+---
+
+# Simple Fix Behaviors
+
+## Context-Specific Behaviors for Root Cause Analysis
+
+### 1. Simplicity First (High Priority)
+- **Start with the simplest possible solution**: Always begin with the most direct fix
+- **Question complexity**: Ask "Is this architectural change actually needed?"
+- **YAGNI**: You Aren't Gonna Need It - don't build features you don't currently need
+- **2-3 line fixes**: If the problem can be solved in 2-3 lines, do that first
+- **Data format issues**: Usually require simple formatting changes, not architectural changes
+
+### 3. Solution Validation (RCA-Specific)
+Before implementing any solution, ask:
+- Can this be solved with a simple data format change?
+- Is this actually a data flow problem or just a formatting problem?
+- Would a 2-3 line fix work instead of a new function/class?
+- Am I over-engineering a simple problem?
+
+### 5. Similar Error Detection (RCA-Specific)
+- **Search Strategy**: Look for same error pattern in similar file types
+- **Common Locations**: Check templates, views, models, forms with similar logic
+- **Pattern Recognition**: If error exists elsewhere, fix the root pattern
+- **Prevention**: Document where similar issues might occur
